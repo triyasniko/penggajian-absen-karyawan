@@ -35,13 +35,13 @@ while ($d = mysqli_fetch_array($data)) {
                                     ?>
                                 </th>
                             </tr>
-                            <?php $bagian = mysqli_query($koneksi, "SELECT * FROM tb_karyawan
-                          INNER JOIN tb_bagian ON tb_karyawan.id_bagian=tb_bagian.id_bagian WHERE id_karyawan='$r[id_karyawan]'");
-                            $b = mysqli_fetch_array($bagian); ?>
+                            <?php $jabatan = mysqli_query($koneksi, "SELECT * FROM tb_karyawan
+                          INNER JOIN tb_jabatan ON tb_karyawan.id_jabatan=tb_jabatan.id_jabatan WHERE id_karyawan='$r[id_karyawan]'");
+                            $b = mysqli_fetch_array($jabatan); ?>
                             <tr>
-                                <th>Bagian</th>
+                                <th>Jabatan</th>
                                 <th>:</th>
-                                <th><?= $b['nama_bagian'] ?></th>
+                                <th><?= $b['nama_jabatan'] ?></th>
                             </tr>
                             <tr>
                                 <th>Tanggal</th>

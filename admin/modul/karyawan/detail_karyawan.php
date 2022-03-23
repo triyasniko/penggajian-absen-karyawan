@@ -24,10 +24,10 @@ while ($d = mysqli_fetch_array($data)) {
                                         <td><?= $d['kode_karyawan'] ?></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Bagian</th>
-                                        <td><?php $bagian = mysqli_query($koneksi, "SELECT * FROM tb_bagian INNER JOIN tb_karyawan ON tb_bagian.id_bagian = tb_karyawan.id_bagian WHERE id_karyawan='$id'");
-                                            while ($b = mysqli_fetch_array($bagian)) {
-                                                echo $b['nama_bagian']
+                                        <th scope="row">Jabatan</th>
+                                        <td><?php $jabatan = mysqli_query($koneksi, "SELECT * FROM tb_jabatan INNER JOIN tb_karyawan ON tb_jabatan.id_jabatan = tb_karyawan.id_jabatan WHERE id_karyawan='$id'");
+                                            while ($b = mysqli_fetch_array($jabatan)) {
+                                                echo $b['nama_jabatan']
                                             ?>
                                             <?php } ?>
                                         </td>

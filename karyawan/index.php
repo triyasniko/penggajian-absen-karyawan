@@ -3,6 +3,8 @@ session_start();
 include '../config/koneksi.php';
 include '../config/rupiah.php';
 include '../scripts.php';
+include '../config/date_indo.php';
+
 setlocale(LC_TIME, 'id_ID.utf8');
 if (@$_SESSION['Karyawan']) {
 ?>
@@ -170,6 +172,8 @@ if (@$_SESSION['Karyawan']) {
                                 include 'modul/absen/add_absen.php';
                             } elseif ($act == 'edit') {
                                 include 'modul/absen/edit_absen.php';
+                            } elseif ($act == 'saveKeluar'){
+                                include 'modul/absen/save_keluar.php';
                             }
                         } elseif ($page == 'profil') {
                             if ($act == '') {

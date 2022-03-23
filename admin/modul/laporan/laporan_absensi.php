@@ -22,8 +22,11 @@
                     <p style="color: red;">* Silahkan pilih tanggal untuk cetak periode</p>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-info" name="btnCetak" target="_blank" aria-expanded="false"><i class="fas fa-print"></i>
-                        Cetak
+                    <button type="submit" class="btn btn-info" name="btnCetakHadir" target="_blank" aria-expanded="false"><i class="fas fa-print"></i>
+                        Hadir
+                    </button>
+                    <button type="submit" class="btn btn-warning" name="btnCetakTidakHadir" target="_blank" aria-expanded="false"><i class="fas fa-print"></i>
+                        Tidak Hadir
                     </button>
 
 

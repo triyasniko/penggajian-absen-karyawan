@@ -22,7 +22,7 @@
                         <tbody>
                             <tr>
                                 <td><?= $no++; ?></td>
-                                <td><?= strftime('%A, %d %B %Y', strtotime(($d['tgl_gaji']))); ?></td>
+                                <td><?= tgl_indo(date('Y-m-d', strtotime(($d['tgl_gaji'])))); ?></td>
                                 <td>
                                     <?php
                                     $gaber = $d['gapok'] + $d['tunjangan'] + $d['bonus'] -

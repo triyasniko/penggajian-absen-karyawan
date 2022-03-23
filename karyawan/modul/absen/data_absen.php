@@ -32,7 +32,7 @@ $jam = date("h:i:sa");
                         <input type="text" class="form-control" name="jam_absensi" value="<?= $jam ?>" readonly>
                     </div>
                     <button name="saveMasuk" type="submit" class="btn btn-primary mr-2">Absen Masuk</button>
-                    <button name="saveKeluar" type="submit" class="btn btn-success mr-2">Absen Keluar</button>
+                    <a href="?page=absen&act=saveKeluar" class="btn btn-success mr-2">Absen Keluar</a>
                     <a href="?page=absen&act=add" class="btn btn-danger mr-2">Klik tombol ini jika berhalangan hadir/absen</a>
                 </form>
             </div>
@@ -65,7 +65,10 @@ if (isset($_POST['saveMasuk'])) {
      window.location='?page=absen';
      </script>";
     } else {
-        $save = mysqli_query($koneksi, "INSERT INTO tb_absenkaryawan VALUES(NULL,'$id','$date', '$jam1','$jam2','$ket','$status','$valid','$nama_gambar')");
+        $save = mysqli_query($koneksi, "
+                INSERT INTO 
+                tb_absenkaryawan(id_absensikaryawan, id_karyawan,tgl_absensi,jam_masuk,jam_keluar,keterangan,status_absensi,valid_absensi,foto)
+                VALUES(NULL,'$id','$date', '$jam1','$jam2','$ket','$status','$valid','$nama_gambar')") or die(mysqli_error($koneksi));
 
         if ($save) {
             echo " <script>
@@ -75,40 +78,5 @@ if (isset($_POST['saveMasuk'])) {
         }
     }
 }
-
-?>
-
-<?php
-// cek nis
-if (isset($_POST['saveKeluar'])) {
-    $datenow        = date('d');
-    $id             = $_POST['id_karyawan'];
-    $date           = date('Y-m-d');
-    $jam1            = date("h:i:sa");
-    $jam2            = date("h:i:sa");
-    $ket            = $_POST['keterangan'];
-    $status         = 'hadir';
-    $valid          = 'N';
-    $sumber         = @$_FILES['foto']['tmp_name'];
-    $target         = '../assets/img/bukti/';
-    $nama_gambar    = @$_FILES['foto']['name'];
-    $pindah         = move_uploaded_file($sumber, $target . $nama_gambar);
-
-
-    //query INSERT disini
-    $save = mysqli_query($koneksi, "UPDATE tb_absenkaryawan SET 
-    id_karyawan='$id',  
-    tgl_absensi='$date',   
-    jam_keluar='$jam2'   
-    WHERE id_karyawan='$id' AND tgl_absensi='$date' ");
-
-    if ($save) {
-        echo " <script>
-      alert('Data Berhasil Disimpan !');
-      window.location='?page=absen';
-      </script>";
-    }
-}
-
 
 ?>

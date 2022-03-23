@@ -62,7 +62,6 @@ session_start();
                                         </div>
                                         <hr>
                                         <button type="submit" value="LOGIN" name="Login" class="btn btn-primary btn-lg btn-block rounded-pill">Login</button>
-                                        <a href="pelamar/home.php" class="btn btn-success btn-lg btn-block rounded-pill">Rekrutmen</a>
                                     </form>
                                 </div>
                             </div>

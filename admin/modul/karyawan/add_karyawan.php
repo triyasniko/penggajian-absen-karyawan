@@ -44,11 +44,11 @@ $level = "karyawan";
                         <input type="text" class="form-control" placeholder="Masukkan Nama" name="nama_karyawan" required="required">
                     </div>
                     <div class="form-group">
-                        <label>Bagian</label>
-                        <select class="form-control" name="id_bagian">
-                            <?php $c = mysqli_query($koneksi, "SELECT * FROM tb_bagian");
+                        <label>Jabatan</label>
+                        <select class="form-control" name="id_jabatan">
+                            <?php $c = mysqli_query($koneksi, "SELECT * FROM tb_jabatan");
                             while ($dc = mysqli_fetch_array($c)) { ?>
-                                <option value="<?= $dc['id_bagian'] ?>"><?= $dc['nama_bagian'] ?></option>
+                                <option value="<?= $dc['id_jabatan'] ?>"><?= $dc['nama_jabatan'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -84,7 +84,7 @@ if (isset($_POST['saveKaryawan'])) {
     $username    = $_POST['kode_karyawan'];
     $pass        = $_POST['kode_karyawan'];
     $status         = $_POST['status_karyawan'];
-    $bagian        = $_POST['id_bagian'];
+    $jabatan        = $_POST['id_jabatan'];
     $sumber       = @$_FILES['foto']['tmp_name'];
     $target       = '../assets/img/karyawan/';
     $nama_gambar  = @$_FILES['foto']['name'];
@@ -95,7 +95,7 @@ if (isset($_POST['saveKaryawan'])) {
     //query INSERT disini
     $nama = addslashes($_POST['nama_karyawan']);
     $save = mysqli_query($koneksi, "INSERT INTO tb_karyawan VALUES(NULL,'$kode','$nama', 
-	          	'$bagian','$username','$pass','$status','$nama_gambar')");
+	          	'$jabatan','$username','$pass','$status','$nama_gambar')");
 
     if ($save) {
         echo " <script>

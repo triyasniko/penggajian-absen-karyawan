@@ -63,7 +63,9 @@ if (isset($_POST['saveIzin'])) {
 
 
 
-    $save = mysqli_query($koneksi, "INSERT INTO tb_absenkaryawan VALUES(NULL,'$id','$date', '$jam','$jam','$ket','$status','$valid','$nama_gambar')");
+    $save = mysqli_query($koneksi, "INSERT INTO tb_absenkaryawan (id_absensikaryawan,id_karyawan,tgl_absensi,jam_masuk,jam_keluar,keterangan,status_absensi,valid_absensi,foto)
+                        VALUES(NULL,'$id','$date', '$jam','$jam','$ket','$status','$valid','$nama_gambar')")
+                        or die(mysqli_error($koneksi));
 
     if ($save) {
         echo " <script>

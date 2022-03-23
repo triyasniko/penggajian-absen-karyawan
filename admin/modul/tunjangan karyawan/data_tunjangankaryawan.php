@@ -21,7 +21,7 @@
             $no = 1;
             $data = mysqli_query($koneksi, "SELECT * FROM tb_karyawan
                 INNER JOIN tb_tunjangankaryawan ON tb_karyawan.id_karyawan=tb_tunjangankaryawan.id_karyawan  
-                INNER JOIN tb_tunjangan ON tb_tunjangankaryawan.id_tunjangan=tb_tunjangan.id_tunjangan ");
+                INNER JOIN tb_tunjangan ON tb_tunjangankaryawan.id_tunjangan=tb_tunjangan.id_tunjangan ") or die(mysqli_error($koneksi));
             while ($d = mysqli_fetch_array($data)) {
             ?>
                 <tbody>

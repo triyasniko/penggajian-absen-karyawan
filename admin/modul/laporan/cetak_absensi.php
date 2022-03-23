@@ -3,6 +3,7 @@ include '../../../config/koneksi.php';
 $dt1 = $_POST["tgl_1"];
 $dt2 = $_POST["tgl_2"];
 ?>
+<?php //var_dump($_GET['absen']); ?>
 <style>
     body {
         font-family: 'Times New Roman', Times, serif, Geneva, Tahoma, sans-serif;
@@ -46,8 +47,10 @@ $dt2 = $_POST["tgl_2"];
         <tbody>
 
             <?php
-            if (isset($_POST["btnCetak"])) {
-                $sql_tampil = "SELECT * FROM tb_karyawan INNER JOIN tb_absenkaryawan ON tb_karyawan.id_karyawan = tb_absenkaryawan.id_karyawan WHERE tgl_absensi BETWEEN '$dt1' AND '$dt2' order by tgl_absensi asc";
+            if (isset($_POST["btnCetakHadir"])) {
+                $sql_tampil = "SELECT * FROM tb_karyawan INNER JOIN tb_absenkaryawan ON tb_karyawan.id_karyawan = tb_absenkaryawan.id_karyawan WHERE tgl_absensi BETWEEN '$dt1' AND '$dt2' AND status_absensi='hadir' order by tgl_absensi asc";
+            }else if(isset($_POST["btnCetakTidakHadir"])){
+                $sql_tampil = "SELECT * FROM tb_karyawan INNER JOIN tb_absenkaryawan ON tb_karyawan.id_karyawan = tb_absenkaryawan.id_karyawan WHERE tgl_absensi BETWEEN '$dt1' AND '$dt2' AND (status_absensi='izin' OR status_absensi='sakit')  order by tgl_absensi asc";
             }
             $query_tampil = mysqli_query($koneksi, $sql_tampil);
             $no = 1;

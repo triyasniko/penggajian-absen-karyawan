@@ -19,18 +19,18 @@ while ($d = mysqli_fetch_array($data)) {
                             <input type="text" class="form-control" name="nama_karyawan" value="<?php echo $d['nama_karyawan']; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="nama_bagian">Bagian </label>
-                            <select class="form-control" id="nama_bagian" name="nama_bagian">
+                            <label for="nama_jabatan">Jabatan </label>
+                            <select class="form-control" id="nama_jabatan" name="nama_jabatan">
                                 <option>-- Pilih --</option>
                                 <?php
-                                $sqlbagian = mysqli_query($koneksi, "SELECT * FROM tb_bagian ORDER BY id_bagian DESC");
-                                while ($bagian = mysqli_fetch_array($sqlbagian)) {
-                                    if ($bagian['id_bagian'] == $d['id_bagian']) {
+                                $sqlJabatan = mysqli_query($koneksi, "SELECT * FROM tb_jabatan ORDER BY id_jabatan DESC");
+                                while ($jabatan = mysqli_fetch_array($sqlJabatan)) {
+                                    if ($jabatan['id_jabatan'] == $d['id_jabatan']) {
                                         $selected = "selected";
                                     } else {
                                         $selected = "";
                                     }
-                                    echo "<option value='$bagian[id_bagian]' $selected>$bagian[nama_bagian]</option>";
+                                    echo "<option value='$jabatan[id_jabatan]' $selected>$jabatan[nama_jabatan]</option>";
                                 }
                                 ?>
                             </select>
@@ -60,7 +60,7 @@ while ($d = mysqli_fetch_array($data)) {
 	    	WHERE id_karyawan='$_POST[id_karyawan]' ");
         }
         $updatekaryawan = mysqli_query($koneksi, "UPDATE tb_karyawan SET 
-			nama_karyawan='$_POST[nama_karyawan]', id_bagian='$_POST[nama_bagian]'
+			nama_karyawan='$_POST[nama_karyawan]', id_jabatan='$_POST[nama_jabatan]'
 			WHERE id_karyawan='$_POST[id_karyawan]' ");
 
         if ($updatekaryawan) {

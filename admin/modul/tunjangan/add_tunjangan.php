@@ -7,14 +7,14 @@
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Nama Tunjangan </label>
-                    <input type="text" class="form-control" placeholder="Masukkan Nama Bagian" name="nama_tunjangan" required="required">
+                    <input type="text" class="form-control" placeholder="Masukkan Nama Tunjangan" name="nama_tunjangan" required="required">
                 </div>
                 <div class="form-group">
                     <label>Jumlah Tunjangan</label>
                     <input type="number" class="form-control" placeholder="Masukkan Jumlah Gaji" name="jumlah_tunjangan" required="required">
                 </div>
 
-                <button name="saveBagian" type="submit" class="btn btn-success mr-2">Simpan</button>
+                <button name="saveTunjangan" type="submit" class="btn btn-success mr-2">Simpan</button>
             </form>
         </div>
     </div>
@@ -22,7 +22,7 @@
 
 <?php
 // cek nis
-if (isset($_POST['saveBagian'])) {
+if (isset($_POST['saveTunjangan'])) {
     $nama               = $_POST['nama_tunjangan'];
     $jumlah_tunjangan   = $_POST['jumlah_tunjangan'];
 

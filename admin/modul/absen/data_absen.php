@@ -11,7 +11,8 @@
                             <th>Nama Karyawan</th>
                             <th>Jam Absen</th>
                             <th>Keterangan</th>
-                            <th>Status Validasi</th>
+                            <th>Daftar Kegiatan</th>
+                            <!-- <th>Status Validasi</th> -->
                         </tr>
                     </thead>
             </div>
@@ -25,7 +26,8 @@
             ?>
                 <tbody>
                     <tr>
-                        <td><?= strftime('%A, %d %B %Y', strtotime(($d['tgl_absensi']))); ?></td>
+                        <td><?= tgl_indo(date('Y-m-d', strtotime(($d['tgl_absensi'])))); ?></td>
+
                         <td><?= $d['kode_karyawan']; ?></td>
                         <td><?= $d['nama_karyawan']; ?></td>
                         <td>
@@ -81,9 +83,12 @@
                             ?>
                         </td>
                         <td>
+                            <?php echo $d['daftar_kegiatan']; ?>
+                        </td>
+                        <!-- <td>
                             <a href="?page=absen&act=confirm&id=<?= $d['id_absensikaryawan']; ?>" class="btn btn-success text-white text-right"> <i class="fas fa-check-double"></i></a>
                             <a href="?page=absen&act=unconfirm&id=<?= $d['id_absensikaryawan']; ?>" class="btn btn-danger text-white text-right"> <i class="fas fa-times-circle"></i></a>
-                        </td>
+                        </td> -->
 
 
                     </tr>

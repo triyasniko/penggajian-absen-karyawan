@@ -3,6 +3,8 @@ session_start();
 include '../config/koneksi.php';
 include '../config/rupiah.php';
 include '../config/timezone.php';
+include '../config/date_indo.php';
+
 setlocale(LC_TIME, 'id_ID.utf8');
 $oke = mysqli_query($koneksi, "SELECT * FROM tb_aplikasi");
 $oke1 = mysqli_fetch_array($oke);
@@ -63,7 +65,7 @@ if (@$_SESSION['Admin']) {
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="?page=karyawan">Data Karyawan</a>
-                            <a class="collapse-item" href="?page=bagian">Data Bagian</a>
+                            <a class="collapse-item" href="?page=jabatan">Data Jabatan</a>
                             <!-- <a class="collapse-item" href="?page=jadwal">Data Jadwal</a> -->
                             <a class="collapse-item" href="?page=tunjangan">Data Tunjangan</a>
                         </div>
@@ -86,11 +88,11 @@ if (@$_SESSION['Admin']) {
                         <i class="fas fa-address-book"></i>
                         <span>Data Absensi</span></a>
                 </li>
-                <li class="nav-item">
+               <!--  <li class="nav-item">
                     <a class="nav-link" href="?page=rekrutmen">
                         <i class="fas fa-users"></i>
                         <span>Data Rekrutmen</span></a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#laporan" aria-expanded="true" aria-controls="laporan">
                         <i class="fas fa-file"></i>
@@ -188,17 +190,17 @@ if (@$_SESSION['Admin']) {
                             } elseif ($act == 'del') {
                                 include 'modul/karyawan/del_karyawan.php';
                             }
-                        } elseif ($page == 'bagian') {
+                        } elseif ($page == 'jabatan') {
                             if ($act == '') {
-                                include 'modul/bagian/data_bagian.php';
+                                include 'modul/jabatan/data_jabatan.php';
                             } elseif ($act == 'add') {
-                                include 'modul/bagian/add_bagian.php';
+                                include 'modul/jabatan/add_jabatan.php';
                             } elseif ($act == 'edit') {
-                                include 'modul/bagian/edit_bagian.php';
+                                include 'modul/jabatan/edit_jabatan.php';
                             } elseif ($act == 'detail') {
-                                include 'modul/bagian/detail_bagian.php';
+                                include 'modul/jabatan/detail_jabatan.php';
                             } elseif ($act == 'del') {
-                                include 'modul/bagian/del_bagian.php';
+                                include 'modul/jabatan/del_jabatan.php';
                             }
                         } elseif ($page == 'jadwal') {
                             if ($act == '') {
@@ -252,23 +254,25 @@ if (@$_SESSION['Admin']) {
                             } elseif ($act == 'detail') {
                                 include 'modul/absen/detail_absen.php';
                             }
-                        } elseif ($page == 'rekrutmen') {
-                            if ($act == '') {
-                                include 'modul/rekrutmen/data_rekrutmen.php';
-                            } elseif ($act == 'add') {
-                                include 'modul/rekrutmen/add_rekrutmen.php';
-                            } elseif ($act == 'detail') {
-                                include 'modul/rekrutmen/detail_rekrutmen.php';
-                            } elseif ($act == 'aktif') {
-                                include 'modul/rekrutmen/aktif_rekrutmen.php';
-                            } elseif ($act == 'nonaktif') {
-                                include 'modul/rekrutmen/nonaktif_rekrutmen.php';
-                            } elseif ($act == 'pelamar') {
-                                include 'modul/rekrutmen/pelamar_rekrutmen.php';
-                            } elseif ($act == 'del') {
-                                include 'modul/rekrutmen/del_rekrutmen.php';
-                            }
-                        } elseif ($page == 'pinjaman') {
+                        } 
+                        // elseif ($page == 'rekrutmen') {
+                        //     if ($act == '') {
+                        //         include 'modul/rekrutmen/data_rekrutmen.php';
+                        //     } elseif ($act == 'add') {
+                        //         include 'modul/rekrutmen/add_rekrutmen.php';
+                        //     } elseif ($act == 'detail') {
+                        //         include 'modul/rekrutmen/detail_rekrutmen.php';
+                        //     } elseif ($act == 'aktif') {
+                        //         include 'modul/rekrutmen/aktif_rekrutmen.php';
+                        //     } elseif ($act == 'nonaktif') {
+                        //         include 'modul/rekrutmen/nonaktif_rekrutmen.php';
+                        //     } elseif ($act == 'pelamar') {
+                        //         include 'modul/rekrutmen/pelamar_rekrutmen.php';
+                        //     } elseif ($act == 'del') {
+                        //         include 'modul/rekrutmen/del_rekrutmen.php';
+                        //     }
+                        // } 
+                        elseif ($page == 'pinjaman') {
                             if ($act == '') {
                                 include 'modul/pinjaman/data_pinjaman.php';
                             } elseif ($act == 'add') {
