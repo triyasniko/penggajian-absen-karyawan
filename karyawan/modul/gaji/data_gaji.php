@@ -14,32 +14,36 @@
                             <th>Cetak</th>
                         </tr>
                     </thead>
-                    <?php
-                    $no = 1;
-                    $data = mysqli_query($koneksi, "SELECT * FROM tb_gaji WHERE id_karyawan = '$sesi'");
-                    while ($d = mysqli_fetch_array($data)) {
-                    ?>
-                        <tbody>
-                            <tr>
-                                <td><?= $no++; ?></td>
-                                <td><?= tgl_indo(date('Y-m-d', strtotime(($d['tgl_gaji'])))); ?></td>
-                                <td>
-                                    <?php
+                    <tbody>
+                        <?php
+                        $no = 1;
+                        $data = mysqli_query($koneksi, "SELECT * FROM tb_gaji WHERE id_karyawan = '$sesi'");
+                        while ($d = mysqli_fetch_array($data)) {
+                        ?>
+
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td><?= tgl_indo(date('Y-m-d', strtotime(($d['tgl_gaji'])))); ?></td>
+                            <td>
+                                <?php
                                     $gaber = $d['gapok'] + $d['tunjangan'] + $d['bonus'] -
                                         $d['potongan'];
                                     echo rupiah($gaber);
                                     ?>
-                                </td>
-                                <td>
-                                    <a href="modul/gaji/cetak_gaji.php?gaji=<?= $_GET['gaji']; ?>&id=<?= $d['id_gaji'] ?>" target="_blank" class="btn btn-success text-white text-right"><i class="fa fa-print text-white"></i> </a>
-                                </td>
+                            </td>
+                            <td>
+                                <a href="modul/gaji/cetak_gaji.php?gaji=<?= $_GET['gaji']; ?>&id=<?= $d['id_gaji'] ?>"
+                                    target="_blank" class="btn btn-success text-white text-right"><i
+                                        class="fa fa-print text-white"></i> </a>
+                            </td>
                             <?php
-                        }
+                            }
                             ?>
-                            </tr>
-                        </tbody>
+                        </tr>
+                    </tbody>
                 </table>
                 </tr>
             </div>
         </div>
     </div>
+</div>
