@@ -17,7 +17,9 @@ session_start();
 
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
@@ -48,10 +50,12 @@ session_start();
                                     </div>
                                     <form method="POST" action="">
                                         <div class="form-group">
-                                            <input class="form-control py-4 rounded-pill" type="text" name="username" placeholder="Masukkan Username" />
+                                            <input class="form-control py-4 rounded-pill" type="text" name="username"
+                                                placeholder="Masukkan Username" />
                                         </div>
                                         <div class="form-group">
-                                            <input class="form-control py-4 rounded-pill" type="password" name="password" placeholder="Masukkan Password" />
+                                            <input class="form-control py-4 rounded-pill" type="password"
+                                                name="password" placeholder="Masukkan Password" />
                                         </div>
                                         <div class="wrap-input100 validate-input " data-validate="Password is required">
                                             <select name="level" class="form-control rounded-pill" required>
@@ -61,7 +65,8 @@ session_start();
                                             </select>
                                         </div>
                                         <hr>
-                                        <button type="submit" value="LOGIN" name="Login" class="btn btn-primary btn-lg btn-block rounded-pill">Login</button>
+                                        <button type="submit" value="LOGIN" name="Login"
+                                            class="btn btn-primary btn-lg btn-block rounded-pill">Login</button>
                                     </form>
                                 </div>
                             </div>

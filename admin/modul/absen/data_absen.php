@@ -15,88 +15,90 @@
                             <!-- <th>Status Validasi</th> -->
                         </tr>
                     </thead>
-            </div>
+                    <tbody>
+                        <?php
+                        $no = 1;
+                        // $data = mysqli_query($koneksi,"SELECT * FROM tb_karyawan");
+                        $data = mysqli_query($koneksi, "SELECT * FROM tb_absenkaryawan 
+                                INNER JOIN tb_karyawan ON tb_absenkaryawan.id_karyawan = tb_karyawan.id_karyawan");
+                        while ($d = mysqli_fetch_array($data)) {
+                        ?>
 
-            <?php
-            $no = 1;
-            // $data = mysqli_query($koneksi,"SELECT * FROM tb_karyawan");
-            $data = mysqli_query($koneksi, "SELECT * FROM tb_absenkaryawan 
-                    INNER JOIN tb_karyawan ON tb_absenkaryawan.id_karyawan = tb_karyawan.id_karyawan");
-            while ($d = mysqli_fetch_array($data)) {
-            ?>
-                <tbody>
-                    <tr>
-                        <td><?= tgl_indo(date('Y-m-d', strtotime(($d['tgl_absensi'])))); ?></td>
+                        <tr>
+                            <td><?= tgl_indo(date('Y-m-d', strtotime(($d['tgl_absensi'])))); ?></td>
 
-                        <td><?= $d['kode_karyawan']; ?></td>
-                        <td><?= $d['nama_karyawan']; ?></td>
-                        <td>
-                            <?= $d['jam_masuk']; ?>
-                            ||
-                            <?= $d['jam_keluar']; ?>
-                        </td>
-                        <td>
-                            <?php
+                            <td><?= $d['kode_karyawan']; ?></td>
+                            <td><?= $d['nama_karyawan']; ?></td>
+                            <td>
+                                <?= $d['jam_masuk']; ?>
+                                ||
+                                <?= $d['jam_keluar']; ?>
+                            </td>
+                            <td>
+                                <?php
                             if ($d['status_absensi'] == 'hadir') {
                             ?>
                                 <span class="badge badge-pill badge-success">
                                     Hadir
                                 </span>
-                            <?php
+                                <?php
                             } elseif ($d['status_absensi'] == 'sakit') {
                             ?>
                                 <span class="badge badge-pill badge-warning">
                                     Sakit
                                 </span>
-                                <a href="?page=absen&act=detail&id=<?= $d['id_absensikaryawan']; ?>" class="btn btn-success text-white text-right"> <i class="fas fa-file"></i></a>
-                            <?php
+                                <a href="?page=absen&act=detail&id=<?= $d['id_absensikaryawan']; ?>"
+                                    class="btn btn-success text-white text-right"> <i class="fas fa-file"></i></a>
+                                <?php
                             } elseif ($d['status_absensi'] == 'izin') {
                             ?>
                                 <span class="badge badge-pill badge-warning">
                                     Izin
                                 </span>
-                                <a href="?page=absen&act=detail&id=<?= $d['id_absensikaryawan']; ?>" class="btn btn-success text-white text-right"> <i class="fas fa-file"></i></a>
-                            <?php
+                                <a href="?page=absen&act=detail&id=<?= $d['id_absensikaryawan']; ?>"
+                                    class="btn btn-success text-white text-right"> <i class="fas fa-file"></i></a>
+                                <?php
                             } else {
                             ?>
                                 <span class="badge badge-pill badge-danger">
                                     Tidak Hadir
                                 </span>
-                            <?php
+                                <?php
                             }
                             ?>
 
-                            <?php
+                                <?php
                             if ($d['valid_absensi'] == 'Y') {
                             ?>
                                 <span class="badge badge-pill badge-primary">
                                     Divalidasi
                                 </span>
-                            <?php
+                                <?php
                             } else {
                             ?>
                                 <span class="badge badge-pill badge-danger">
                                     Belum Divalidasi
                                 </span>
-                            <?php
+                                <?php
                             }
                             ?>
-                        </td>
-                        <td>
-                            <?php echo $d['daftar_kegiatan']; ?>
-                        </td>
-                        <!-- <td>
-                            <a href="?page=absen&act=confirm&id=<?= $d['id_absensikaryawan']; ?>" class="btn btn-success text-white text-right"> <i class="fas fa-check-double"></i></a>
-                            <a href="?page=absen&act=unconfirm&id=<?= $d['id_absensikaryawan']; ?>" class="btn btn-danger text-white text-right"> <i class="fas fa-times-circle"></i></a>
+                            </td>
+                            <td>
+                                <?php echo $d['daftar_kegiatan']; ?>
+                            </td>
+                            <!-- <td>
+                            <a href="?page=absen&act=confirm&id=<?//= $d['id_absensikaryawan']; ?>" class="btn btn-success text-white text-right"> <i class="fas fa-check-double"></i></a>
+                            <a href="?page=absen&act=unconfirm&id=<?//= $d['id_absensikaryawan']; ?>" class="btn btn-danger text-white text-right"> <i class="fas fa-times-circle"></i></a>
                         </td> -->
 
 
-                    </tr>
-                <?php
-            }
-                ?>
-                </tbody>
+                        </tr>
+                        <?php
+                            }
+                        ?>
+                    </tbody>
                 </table>
+            </div>
         </div>
     </div>
 </div>
