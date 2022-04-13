@@ -1,17 +1,19 @@
 <?php
-$tgl = date('Y-m-d');
-$bulan = date('m');
-?>
-<?php
-$idk = $_POST['id'];
-$id = $_POST['kode_karyawan'];
-$query = mysqli_query($koneksi, "SELECT * FROM tb_karyawan WHERE kode_karyawan='$id'") or die(mysqli_error($koneksi));
-$r = mysqli_fetch_array($query);
-$cek = mysqli_num_rows(mysqli_query($koneksi, "SELECT * FROM tb_karyawan WHERE kode_karyawan='$_POST[kode_karyawan]'"));
-if ($cek == 0) {
-    echo "<script>window.alert('Nomor Identitas Tidak Ada !')
-    window.location='?page=gaji&act=add'</script>";
-} else {
+    $tgl = date('Y-m-d');
+    $bulan = date('m');
+
+    if(isset($_POST["btnCariKaryawan"])){
+        $idk = $_POST['id'];
+        $id = $_POST['kode_karyawan'];
+        $query = mysqli_query($koneksi, "SELECT * FROM tb_karyawan WHERE kode_karyawan='$id'") or die(mysqli_error($koneksi));
+        $r = mysqli_fetch_array($query);
+        $cek = mysqli_num_rows(mysqli_query($koneksi, "SELECT * FROM tb_karyawan WHERE kode_karyawan='$_POST[kode_karyawan]'"));
+    
+
+    if ($cek == 0) {
+        echo "<script>window.alert('Nomor Identitas Tidak Ada !')
+        window.location='?page=gaji&act=add'</script>";
+    } else {
 ?>
 
     <div class="card">
@@ -75,7 +77,7 @@ if ($cek == 0) {
         $total = $row_tunjangan['tunjangan'];
         ?>
 
-        <div class=" container mt-5">
+        <div class="container mt-5">
             <div class="card">
                 <div class="card-body">
                     <div class="col" role="main">
@@ -134,7 +136,10 @@ if ($cek == 0) {
             </div>
         </div>
     </form>
-<?php } ?>
+<?php 
+    }
+    } 
+?>
 
 
 <?php
@@ -152,9 +157,9 @@ if (isset($_POST['saveGaji'])) {
 
     if ($save) {
         echo " <script>
-      alert('Data Berhasil disimpan !');
-      window.location='?page=gaji';
-      </script>";
+            alert('Data Berhasil disimpan !');
+            window.location='?page=gaji';
+        </script>";
     }
 }
 
