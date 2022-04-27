@@ -98,13 +98,13 @@ session_start();
             if ($cek > 0) {
                 $_SESSION['Admin'] = $id;
                 echo " <script>
-window.location='admin/index.php';
-</script>";
+                window.location='admin/index.php';
+                </script>";
             } else {
                 echo " <script>
-alert('Username atau Password Salah !');
-window.location='login.php';
-</script>";
+                alert('Username atau Password Salah !');
+                window.location='login.php';
+                </script>";
             }
         } elseif ($level == '2') {
 

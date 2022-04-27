@@ -2,3 +2,6 @@ max lembur per minggu 8 jam, klo lebih dari itu g dianggep
 lembur dihitung mingguan
 
 ratelembur=17000
+
+bonus nggak butuh
+untuk membatasi maks perminggu berapa jam lemburnya dilakukan di bagian presensi sebelum insert data baru

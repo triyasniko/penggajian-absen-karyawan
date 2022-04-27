@@ -83,7 +83,7 @@ if (@$_SESSION['Admin']) {
                 <div id="keuangan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="?page=gaji">Penggajian Karyawan</a>
-                        <!-- <a class="collapse-item" href="?page=tunjangankaryawan">Tunjangan Karyawan</a> -->
+                        <a class="collapse-item" href="?page=tunjangankaryawan">Tunjangan Karyawan</a>
                     </div>
                 </div>
             </li>
@@ -305,19 +305,19 @@ if (@$_SESSION['Admin']) {
                                 include 'modul/tunjangan/del_tunjangan.php';
                             }
                         } 
-                        // elseif ($page == 'tunjangankaryawan') {
-                        //     if ($act == '') {
-                        //         include 'modul/tunjangan karyawan/data_tunjangankaryawan.php';
-                        //     } elseif ($act == 'add') {
-                        //         include 'modul/tunjangan karyawan/add_tunjangankaryawan.php';
-                        //     } elseif ($act == 'detail') {
-                        //         include 'modul/tunjangan karyawan/detail_tunjangankaryawan.php';
-                        //     } elseif ($act == 'edit') {
-                        //         include 'modul/tunjangan karyawan/edit_tunjangankaryawan.php';
-                        //     } elseif ($act == 'del') {
-                        //         include 'modul/tunjangan karyawan/del_tunjangankaryawan.php';
-                        //     }
-                        // } 
+                        elseif ($page == 'tunjangankaryawan') {
+                            if ($act == '') {
+                                include 'modul/tunjangan karyawan/data_tunjangankaryawan.php';
+                            } elseif ($act == 'add') {
+                                include 'modul/tunjangan karyawan/add_tunjangankaryawan.php';
+                            } elseif ($act == 'detail') {
+                                include 'modul/tunjangan karyawan/detail_tunjangankaryawan.php';
+                            } elseif ($act == 'edit') {
+                                include 'modul/tunjangan karyawan/edit_tunjangankaryawan.php';
+                            } elseif ($act == 'del') {
+                                include 'modul/tunjangan karyawan/del_tunjangankaryawan.php';
+                            }
+                        } 
                         elseif ($page == 'laporan') {
                             if ($act == '') {
                                 include 'modul/laporan/laporan_absensi.php';

@@ -65,10 +65,11 @@
         </div>
     </div>
     <form action="" enctype="multipart/form-data" method="POST">
-        <input type="hidden" name="id_karyawan" value="<?= $r['id_karyawan'] ?>">
+        <input type="text" class="form-control" name="id_karyawan" value="<?= $r['id_karyawan'] ?>">
         <?php
-        $tunjangan = mysqli_query($koneksi, "SELECT * FROM tb_tunjangan WHERE id_karyawan='$r[id_karyawan]'");
-        $t = mysqli_fetch_array($tunjangan);
+        // $tunjangan = mysqli_query($koneksi, "SELECT * FROM tb_tunjangan WHERE id_karyawan='$r[id_karyawan]'");
+        // $t = mysqli_fetch_array($tunjangan);
+        // var_dump($t);
         ?>
 
         <?php
@@ -106,7 +107,7 @@
                                                     <?php } ?>
                                                 </div>
                                                 <?php
-                                                $data = mysqli_query($koneksi, "SELECT * FROM tb_absenkaryawan WHERE id_karyawan='$r[id_karyawan]' OR status_absensi=='tidak hadir' AND tgl_absensi='$bln'");
+                                                $data = mysqli_query($koneksi, "SELECT * FROM tb_absenkaryawan WHERE id_karyawan='$r[id_karyawan]' OR status_absensi=='tidak hadir' AND MONTH(tgl_absensi)='$bulan'");
                                                 $total_absen = mysqli_num_rows($data);
 
                                                 $tidakhadir = 30 - $total_absen;
@@ -116,12 +117,70 @@
                                                     <label>Potongan</label>
                                                     <input type="number" class="form-control" name="potongan" value="<?= $potongan ?>" readonly>
                                                 </div>
+                                                <div class="alert alert info">
+                                                    <?php
+                                                        // var_dump($tgl_absensi===$bulan);
+                                                    ?>
+                                                </div>
+                                                <?php
+                                                    // $query_lembur = mysqli_query($koneksi, "SELECT * FROM tb_absenkaryawan WHERE id_karyawan='$r[id_karyawan]' OR tgl_absensi='$bln' AND status_absensi='hadir'");
+                                                    $query_lembur = mysqli_query($koneksi, "SELECT * FROM tb_absenkaryawan WHERE id_karyawan='$r[id_karyawan]' AND MONTH(tgl_absensi)='$bulan' AND status_absensi='hadir'");
+                                                    // var_dump($data=mysqli_fetch_assoc($query_lembur));
+                                                    // exit();
+
+                                                    while($row_lembur = mysqli_fetch_assoc($query_lembur)){
+                                                        echo "<p>".
+                                                            $row_lembur['id_absensikaryawan']." | ".
+                                                            $row_lembur['jam_masuk'] ." - ".$row_lembur['jam_keluar']
+                                                            ."</p>";
+
+                                                        $totaljam=strtotime($row_lembur['jam_keluar'])-strtotime($row_lembur['jam_masuk']);
+                                                        $format_jam=floor($totaljam / (60 * 60));
+                                                        $format_menit=floor(($totaljam-$format_jam* (60 * 60))/60);
+                                                        echo "<p>"."Total Jam : ".
+                                                            $format_jam." jam ".
+                                                            $format_menit." menit "                                                          
+                                                            ."</p>";
+                                                        echo "Lembur :";
+                                                        if($format_jam>8){
+                                                            $jam_lembur=$format_jam-8;
+                                                            echo "<b>$jam_lembur</b>";
+                                                            
+                                                            // count total_jam_lembur
+                                                            $total_jam_lembur=$total_jam_lembur+$jam_lembur;
+
+                                                        }else{
+                                                            // jam_lembur = 0
+                                                            $jam_lembur=0;
+                                                        }
+                                                        
+                                                        echo "<br>";
+                                                        echo "----------------------------";
+                                                        echo "<br>";
+                                                        
+                                                    }
+                                                    
+                                                    echo "<br><br>";
+                                                    echo "Total Jam Lembur : <b>$total_jam_lembur</b>";
+                                                    echo "<br><br>";
+                                                    // echo "<br><br>";
+                                                ?>
+                                                <div class="form-group">
+                                                    <label>Total Jam Lembur</label>
+                                                    <!-- <div class="alert alert-info"><?php //var_dump($row_lembur); ?></div> -->
+                                                    <input type="number" class="form-control" name="total_jam_lembur" value="<?php echo $total_jam_lembur ?>" readonly>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
 
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                     <label>Bonus</label>
                                                     <input type="number" class="form-control" name="bonus">
+                                                </div> -->
+                                                <div class="form-group">
+                                                    <label>Jumlah Upah Lembur</label>
+                                                    <!-- <div class="alert alert-info"><?php //var_dump($row_lembur); ?></div> -->
+                                                    <input type="number" class="form-control" name="jumlah_upah_lembur" value="<?php echo $total_jam_lembur*17000; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -150,10 +209,14 @@ if (isset($_POST['saveGaji'])) {
     $potongan = $_POST['potongan'];
     $gapok = $_POST['gapok'];
     $tunjangan = $_POST['tunjangan'];
-    $bonus = $_POST['bonus'];
+    $total_jam_lembur=$_POST['total_jam_lembur'];
+    // $bonus = $_POST['bonus'];
+    $jumlah_upah_lembur=$_POST['jumlah_upah_lembur'];
+    $total_gaji=$gapok+$tunjangan+$jumlah_upah_lembur;
 
     //query INSERT disini
-    $save = mysqli_query($koneksi, "INSERT INTO tb_gaji VALUES(NULL,'$tgl_gaji','$id','$potongan','$gapok','$tunjangan','$bonus')") or die(mysqli_error($koneksi));
+    $save = mysqli_query($koneksi, "INSERT INTO tb_gaji (tgl_gaji,id_karyawan,potongan,gapok,tunjangan,bonus,total_jam_lembur,jumlah_upah_lembur,total_gaji)  
+    VALUES('$tgl_gaji','$id','$potongan','$gapok','$tunjangan','$bonus','$total_jam_lembur','$jumlah_upah_lembur','$total_gaji')") or die(mysqli_error($koneksi));
 
     if ($save) {
         echo " <script>
