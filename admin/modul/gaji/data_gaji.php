@@ -28,7 +28,7 @@
                             <td><?= $d['nama_karyawan'] ?></td>
                             <td>
                                 <?php
-                                    $gaber = $d['gapok'] + $d['tunjangan'] + $d['bonus'] - $d['potongan'];
+                                    $gaber = $d['total_gaji'];
                                     echo rupiah($gaber);
                                 ?>
                             </td>

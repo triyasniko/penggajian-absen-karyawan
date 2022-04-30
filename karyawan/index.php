@@ -229,7 +229,6 @@ if (@$_SESSION['Karyawan']) {
             </div>
         </div>
 
-        <script src="../assets/js/jquery.min.js"></script>
         <!-- Bootstrap core JavaScript-->
         <script src="../assets/vendor/jquery/jquery.min.js"></script>
         <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -239,8 +238,6 @@ if (@$_SESSION['Karyawan']) {
 
         <!-- Custom scripts for all pages-->
         <script src="../assets/js/sb-admin-2.min.js"></script>
-
-        <script src="../assets/js/demo/chart-bar-demo.js"></script>
 
         <!-- Page level plugins -->
         <script src="../assets/vendor/datatables/jquery.dataTables.min.js"></script>
