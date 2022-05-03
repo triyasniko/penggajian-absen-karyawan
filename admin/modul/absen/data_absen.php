@@ -2,6 +2,43 @@
     <div class="card shadow mb-4">
         <h5 class="card-header text-center">Data Absensi Karyawan</h5>
         <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-lg-4">
+                    <form action="?page=absen" method="post">
+                        <?php 
+                            $kategori = $_POST['kategori'];
+                        ?>
+                        <select class="form-control" name="kategori">
+                            <option value="">Pilih Kategori</option>
+                            <option value="absen" <?=$kategori=='absen'?'selected':''?>> Absen</option>
+                            <option value="lembur" <?=$kategori=='lembur'?'selected':''?>>Lembur</option>
+                        </select>
+                        <?php
+                            if($kategori != null){
+                                switch($kategori) {
+                                    case  'absen':
+                                      $query = 'SELECT * FROM tb_absenkaryawan 
+                                      INNER JOIN tb_karyawan ON tb_absenkaryawan.id_karyawan = tb_karyawan.id_karyawan WHERE tb_absenkaryawan.jam_lembur=0';
+                                      break;
+                                    case 'lembur':
+                                        $query = 'SELECT * FROM tb_absenkaryawan 
+                                        INNER JOIN tb_karyawan ON tb_absenkaryawan.id_karyawan = tb_karyawan.id_karyawan WHERE tb_absenkaryawan.jam_lembur > 0';
+                                        break;
+                                    default:
+                                    $query = 'SELECT * FROM tb_absenkaryawan 
+                                    INNER JOIN tb_karyawan ON tb_absenkaryawan.id_karyawan = tb_karyawan.id_karyawan';
+                                }
+                            }else{
+                                $query = 'SELECT * FROM tb_absenkaryawan 
+                                INNER JOIN tb_karyawan ON tb_absenkaryawan.id_karyawan = tb_karyawan.id_karyawan';
+                            }
+                        ?>
+                    </div>
+                <div class="col-lg-4">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered text-center" id="dataTable" width="100%">
                     <thead>
@@ -19,8 +56,12 @@
                         <?php
                         $no = 1;
                         // $data = mysqli_query($koneksi,"SELECT * FROM tb_karyawan");
+                        /*
                         $data = mysqli_query($koneksi, "SELECT * FROM tb_absenkaryawan 
                                 INNER JOIN tb_karyawan ON tb_absenkaryawan.id_karyawan = tb_karyawan.id_karyawan");
+                        */
+                        $data = mysqli_query($koneksi, $query);
+               
                         while ($d = mysqli_fetch_array($data)) {
                         ?>
 
