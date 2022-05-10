@@ -6,7 +6,9 @@
                 <div class="col-lg-4">
                     <form action="?page=absen" method="post">
                         <?php 
-                            $kategori = $_POST['kategori'];
+                            if(isset($_POST['cari'])){
+                                $kategori = $_POST['kategori'];
+                            }
                         ?>
                         <select class="form-control" name="kategori">
                             <option value="">Pilih Kategori</option>
@@ -35,7 +37,7 @@
                         ?>
                     </div>
                 <div class="col-lg-4">
-                    <button class="btn btn-primary" type="submit">Search</button>
+                    <button class="btn btn-primary" type="submit" name="cari">Search</button>
                     </form>
                 </div>
             </div>
@@ -47,6 +49,7 @@
                             <th>Kode Karyawan</th>
                             <th>Nama Karyawan</th>
                             <th>Jam Absen</th>
+                            <th>Jam Lembur</th>
                             <th>Keterangan</th>
                             <th>Daftar Kegiatan</th>
                             <!-- <th>Status Validasi</th> -->
@@ -74,6 +77,9 @@
                                 <?= $d['jam_masuk']; ?>
                                 ||
                                 <?= $d['jam_keluar']; ?>
+                            </td>
+                            <td>
+                                <?= $d['jam_lembur']; ?>
                             </td>
                             <td>
                                 <?php

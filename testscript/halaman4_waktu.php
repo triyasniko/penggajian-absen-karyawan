@@ -13,4 +13,4 @@ echo date('I-L-Y');
 echo "<br>";
 echo date('Y-m-d');
 echo "<br>";
-echo date('H:i:s');
+echo date("Y-M-d H:i:s");
