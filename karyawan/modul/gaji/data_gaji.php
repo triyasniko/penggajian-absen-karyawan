@@ -25,13 +25,11 @@
                             <td><?= $no++; ?></td>
                             <td><?= tgl_indo(date('Y-m-d', strtotime(($d['tgl_gaji'])))); ?></td>
                             <td>
-                                <?php
-                                    $gaber = $d['gapok'] + $d['tunjangan'] + $d['bonus'] -
-                                        $d['potongan'];
-                                    echo rupiah($gaber);
-                                    ?>
+                                <?php echo rupiah($d['total_gaji']); ?>
                             </td>
                             <td>
+                                <a href="?page=gaji&act=detail_gaji&id_gaji=<?php echo $d['id_gaji']; ?>" class="btn btn-outline-primary"><i
+                                            class="fa fa-info"></i> </a>
                                 <a href="modul/gaji/cetak_gaji.php?gaji=<?= $_GET['gaji']; ?>&id=<?= $d['id_gaji'] ?>"
                                     target="_blank" class="btn btn-success text-white text-right"><i
                                         class="fa fa-print text-white"></i> </a>

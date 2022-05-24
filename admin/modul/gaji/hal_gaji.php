@@ -73,8 +73,11 @@
         ?>
 
         <?php
-        $tunjangan = mysqli_query($koneksi, "SELECT SUM(jumlah_tunjangan) as tunjangan FROM tb_tunjangan INNER JOIN tb_tunjangankaryawan ON tb_tunjangan.id_tunjangan = tb_tunjangankaryawan.id_tunjangan WHERE id_karyawan='$r[id_karyawan]' ");
+        // $tunjangan = mysqli_query($koneksi, "SELECT SUM(jumlah_tunjangan) as tunjangan FROM tb_tunjangan INNER JOIN tb_tunjangankaryawan ON tb_tunjangan.id_tunjangan = tb_tunjangankaryawan.id_tunjangan WHERE id_karyawan='$r[id_karyawan]' ");
+        $tunjangan=mysqli_query($koneksi, "SELECT SUM(jumlah_tunjangan) as tunjangan FROM tb_tunjangan INNER JOIN tb_jabatan ON tb_tunjangan.id_jabatan=tb_jabatan.id_jabatan WHERE tb_tunjangan.id_jabatan='$r[id_jabatan]' ");
         $row_tunjangan = mysqli_fetch_array($tunjangan);
+        // var_dump($tunjangan);
+        // exit();
         $total = $row_tunjangan['tunjangan'];
         ?>
 

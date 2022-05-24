@@ -44,12 +44,29 @@ $level = "karyawan";
                         <input type="text" class="form-control" placeholder="Masukkan Nama" name="nama_karyawan" required="required">
                     </div>
                     <div class="form-group">
-                        <label>Jabatan</label>
+                        <label>NIK :</label>
+                        <input type="text" class="form-control" placeholder="Masukkan NIK" name="nik" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label>Jabatan :</label>
                         <select class="form-control" name="id_jabatan">
                             <?php $c = mysqli_query($koneksi, "SELECT * FROM tb_jabatan");
                             while ($dc = mysqli_fetch_array($c)) { ?>
                                 <option value="<?= $dc['id_jabatan'] ?>"><?= $dc['nama_jabatan'] ?></option>
                             <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Pendidikan Terakhir :</label>
+                        <select class="form-control" name="pendidikan" required>
+                            <option value="">--Pilih Pendidikan--</option>
+                            <option value="SD">SD</option>
+                            <option value="SMP">SMP</option>
+                            <option value="SMA Sederajat">SMA Sederajat</option>
+                            <option value="D3">D3</option>
+                            <option value="S1 Sederajat">S1 Sederajat</option>
+                            <option value="S2">S2</option>
+                            <option value="S3">S3</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -61,10 +78,26 @@ $level = "karyawan";
                         </select>
                     </div>
                     <div class="form-group">
+                        <label>Golongan Darah :</label>
+                        <select class="form-control" name="golongan_darah" required>
+                            <option value="">--Pilih Golongan Darah--</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="AB">AB</option>
+                            <option value="O">O</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat :</label>
+                        <textarea name="alamat" required="required" class="form-control" placeholder="Masukkan Alamat Lengkap"></textarea>
+                    </div>
+                    <div class="form-group">
                         <label>Foto :</label>
                         <input type="file" name="foto" required="required">
                         <p style="color: red">Ekstensi yang diperbolehkan .png | .jpg | .jpeg | .gif</p>
                     </div>
+                    
+
                     <button name="saveKaryawan" type="submit" class="btn btn-success mr-2">Submit</button>
                 </form>
             </div>
@@ -81,21 +114,26 @@ if (isset($_POST['saveKaryawan'])) {
     $id         = $_POST['id_karyawan'];
     $kode         = $_POST['kode_karyawan'];
     $nama         = $_POST['nama_karyawan'];
+    $nik       = $_POST['nik'];
     $username    = $_POST['kode_karyawan'];
     $pass        = $_POST['kode_karyawan'];
     $status         = $_POST['status_karyawan'];
+    $golongan_darah=$_POST['golongan_darah'];
     $jabatan        = $_POST['id_jabatan'];
+    $alamat     = $_POST['alamat'];
+    $pendidikan    = $_POST['pendidikan'];
     $sumber       = @$_FILES['foto']['tmp_name'];
     $target       = '../assets/img/karyawan/';
     $nama_gambar  = @$_FILES['foto']['name'];
     $pindah       = move_uploaded_file($sumber, $target . $nama_gambar);
     $date         = date('Y-m-d');
+    
 
 
     //query INSERT disini
     $nama = addslashes($_POST['nama_karyawan']);
-    $save = mysqli_query($koneksi, "INSERT INTO tb_karyawan VALUES(NULL,'$kode','$nama', 
-	          	'$jabatan','$username','$pass','$status','$nama_gambar')");
+    $save = mysqli_query($koneksi, "INSERT INTO tb_karyawan VALUES(NULL,'$kode','$nama','$nik', 
+	          	'$jabatan','$pendidikan','$username','$pass','$status','$golongan_darah','$alamat','$nama_gambar')");
 
     if ($save) {
         echo " <script>

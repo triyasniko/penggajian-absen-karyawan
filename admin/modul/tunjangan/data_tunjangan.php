@@ -9,6 +9,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Jabatan</th>
                             <th>Nama Tunjangan</th>
                             <th>Jumlah Tunjangan</th>
                             <th>Opsi</th>
@@ -18,12 +19,15 @@
                     <tbody>
                         <?php
                         $no = 1;
-                        $data = mysqli_query($koneksi, "SELECT * FROM tb_tunjangan");
+                        $data=mysqli_query($koneksi, "SELECT * FROM tb_tunjangan INNER JOIN tb_jabatan ON tb_tunjangan.id_jabatan=tb_jabatan.id_jabatan");
+                        // var_dump(mysqli_fetch_assoc($data));
+                        // exit();
                         while ($d = mysqli_fetch_array($data)) {
                         ?>
 
                         <tr>
                             <td><?= $no++; ?></td>
+                            <td><?= $d['nama_jabatan']; ?></td>
                             <td><?= $d['nama_tunjangan']; ?></td>
                             <td><?= rupiah($d['jumlah_tunjangan']); ?></td>
                             <td>

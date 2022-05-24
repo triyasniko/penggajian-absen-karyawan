@@ -24,6 +24,10 @@ while ($d = mysqli_fetch_array($data)) {
                                         <td><?= $d['kode_karyawan'] ?></td>
                                     </tr>
                                     <tr>
+                                        <th scope="row">NIK</th>
+                                        <td><?= $d['nik'] ?></td>
+                                    </tr>
+                                    <tr>
                                         <th scope="row">Jabatan</th>
                                         <td><?php $jabatan = mysqli_query($koneksi, "SELECT * FROM tb_jabatan INNER JOIN tb_karyawan ON tb_jabatan.id_jabatan = tb_karyawan.id_jabatan WHERE id_karyawan='$id'");
                                             while ($b = mysqli_fetch_array($jabatan)) {
@@ -31,6 +35,10 @@ while ($d = mysqli_fetch_array($data)) {
                                             ?>
                                             <?php } ?>
                                         </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Pendidikan Terakhir</th>
+                                        <td><?= $d['pendidikan'] ?></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Status</th>
@@ -43,6 +51,10 @@ while ($d = mysqli_fetch_array($data)) {
                                             }
                                             ?>
                                         </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Alamat</th>
+                                        <td><?= $d['alamat']; ?></td>
                                     </tr>
                                 </tbody>
                             </table>

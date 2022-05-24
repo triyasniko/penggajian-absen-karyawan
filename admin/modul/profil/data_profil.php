@@ -25,14 +25,14 @@
 </div>
 
 <?php
-// cek nis
+
 if (isset($_POST['updateProfil'])) {
     $nama = $_POST['nama_admin'];
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     //query INSERT disini
-    $save = mysqli_query($koneksi, "UPDATE tb_admin SET nama_admin='$nama',username='$username', password='$password' WHERE id_admin='$id'");
+    $save = mysqli_query($koneksi, "UPDATE tb_admin SET nama_admin='$nama',username='$username', password='$password' WHERE id_admin='$data[id_admin]'");
 
     if ($save) {
         echo " <script>

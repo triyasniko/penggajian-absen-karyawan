@@ -80,12 +80,6 @@ while ($d = mysqli_fetch_array($data)) {
                                                     <input type="number" class="form-control" name="potongan" value="<?= $d['potongan']; ?>">
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Bonus</label>
-                                                    <input type="number" class="form-control" name="bonus" value="<?= $d['bonus']; ?>">
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -51,26 +51,16 @@ if (@$_SESSION['Karyawan']) {
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Beranda</span></a>
                 </li>
-
-
-                <!-- Nav Item - Pages Collapse Menu -->
-
-
                 <li class="nav-item">
                     <a class="nav-link" href="?page=absen">
                         <i class="fas fa-address-book"></i>
                         <span>Data Absensi</span></a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="?page=gaji">
                         <i class="fas fa-money-check"></i>
                         <span>Data Penggajian</span></a>
                 </li>
-
-
-
-
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
 
@@ -139,19 +129,7 @@ if (@$_SESSION['Karyawan']) {
                         $page = @$_GET['page'];
                         $act = @$_GET['act'];
 
-                        if ($page == 'karyawan') {
-                            if ($act == '') {
-                                include 'modul/karyawan/data_karyawan.php';
-                            } elseif ($act == 'add') {
-                                include 'modul/karyawan/add_karyawan.php';
-                            } elseif ($act == 'edit') {
-                                include 'modul/karyawan/edit_karyawan.php';
-                            } elseif ($act == 'detail') {
-                                include 'modul/karyawan/detail_karyawan.php';
-                            } elseif ($act == 'del') {
-                                include 'modul/karyawan/del_karyawan.php';
-                            }
-                        } elseif ($page == 'gaji') {
+                        if ($page == 'gaji') {
                             if ($act == '') {
                                 include 'modul/gaji/data_gaji.php';
                             } elseif ($act == 'add') {
@@ -164,6 +142,8 @@ if (@$_SESSION['Karyawan']) {
                                 include 'modul/gaji/detail_gaji.php';
                             } elseif ($act == 'hitung') {
                                 include 'modul/gaji/hitung_gaji.php';
+                            } elseif ($act == 'detail_gaji') {
+                                include 'modul/gaji/detail_gaji.php';
                             }
                         } elseif ($page == 'absen') {
                             if ($act == '') {
@@ -182,7 +162,7 @@ if (@$_SESSION['Karyawan']) {
                         } elseif ($page == '') {
                             include 'home.php';
                         } else {
-                            echo "<b>4014!</b> Tidak ada halaman !";
+                            echo "<b>404!</b> Tidak ada halaman !";
                         }
 
                         ?>
@@ -193,7 +173,7 @@ if (@$_SESSION['Karyawan']) {
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2020</span>
+                            <span>Copyright &copy; Polytron 2020</span>
                         </div>
                     </div>
                 </footer>

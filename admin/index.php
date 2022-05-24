@@ -309,7 +309,7 @@ if (@$_SESSION['Admin']) {
                         //     if ($act == '') {
                         //         include 'modul/tunjangan karyawan/data_tunjangankaryawan.php';
                         //     } elseif ($act == 'add') {
-                        //         include 'modul/tunjangan karyawan/add_tunjangankaryawan.php';
+                        //         include 'modul/tu njangan karyawan/add_tunjangankaryawan.php';
                         //     } elseif ($act == 'detail') {
                         //         include 'modul/tunjangan karyawan/detail_tunjangankaryawan.php';
                         //     } elseif ($act == 'edit') {
