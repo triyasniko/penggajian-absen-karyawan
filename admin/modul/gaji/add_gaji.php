@@ -8,7 +8,7 @@
                 <div class="form-group">
                     <div class="col-sm-12 col-sm-12 col-xs-12 ">
                         <div class="input-group col-md-6">
-                            <input type="text" class="typeahead form-control" placeholder="Masukkan Kode Karyawan" required name="kode_karyawan" autofocus=”autofocus” autocomplete="off">
+                            <!-- <input type="text" class="typeahead form-control" placeholder="Masukkan Kode Karyawan" required name="kode_karyawan" autofocus=”autofocus” autocomplete="off"> -->
                             <span class="input-group-btn ml-3">
                                 <button type="submit" class="btn btn-success" name="btnCariKaryawan"><i class="fa fa-search"></i> Cari</button>
                             </span>
