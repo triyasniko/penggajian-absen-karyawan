@@ -40,8 +40,6 @@ while ($d = mysqli_fetch_array($data)) {
                     <th>Nama Karyawan</th>
                     <th>Gaji Pokok</th>
                     <th>Tunjangan</th>
-                    <th>Bonus</th>
-                    <th>Potongan</th>
                     <th>Gaji Bersih</th>
                 </tr>
             </thead>
@@ -58,11 +56,9 @@ while ($d = mysqli_fetch_array($data)) {
                         <td><?= $data['nama_karyawan'] ?> </td>
                         <td><?= rupiah($data['gapok']) ?> </td>
                         <td><?= rupiah($data['tunjangan']) ?> </td>
-                        <td><?= rupiah($data['bonus']) ?> </td>
-                        <td><?= rupiah($data['potongan']) ?> </td>
                         <td>
                             <?php
-                            $bersih = $data['gapok'] + $data['tunjangan'] + $data['bonus'] - $data['potongan'];
+                            $bersih = $data['gapok'] + $data['tunjangan'] + $data['jumlah_upah_lembur'];
                             echo rupiah($bersih);
                             ?>
                         </td>

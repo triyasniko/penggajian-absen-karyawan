@@ -51,7 +51,7 @@ $dt2 = $_POST["tgl_2"];
                 <th>Total Jam Lembur</th>
                 <th>Total Upah Lembur</th>
                 <!-- <th>Potongan</th> -->
-                <th>Gaji Bersih</th>
+                <th>Total Gaji</th>
             </tr>
         </thead>
         <tbody>

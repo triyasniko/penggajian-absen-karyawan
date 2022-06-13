@@ -234,7 +234,10 @@ if (@$_SESSION['Admin']) {
                                 include 'modul/gaji/data_gaji.php';
                             } elseif ($act == 'add') {
                                 include 'modul/gaji/add_gaji.php';
-                            } elseif ($act == 'edit') {
+                            } elseif($act=='add2'){
+                                include 'modul/gaji/add_gaji2.php';
+                            }
+                            elseif ($act == 'edit') {
                                 include 'modul/gaji/edit_gaji.php';
                             } elseif ($act == 'del') {
                                 include 'modul/gaji/del_gaji.php';
@@ -262,32 +265,6 @@ if (@$_SESSION['Admin']) {
                                 include 'modul/absen/detail_absen.php';
                             }
                         } 
-                        // elseif ($page == 'rekrutmen') {
-                        //     if ($act == '') {
-                        //         include 'modul/rekrutmen/data_rekrutmen.php';
-                        //     } elseif ($act == 'add') {
-                        //         include 'modul/rekrutmen/add_rekrutmen.php';
-                        //     } elseif ($act == 'detail') {
-                        //         include 'modul/rekrutmen/detail_rekrutmen.php';
-                        //     } elseif ($act == 'aktif') {
-                        //         include 'modul/rekrutmen/aktif_rekrutmen.php';
-                        //     } elseif ($act == 'nonaktif') {
-                        //         include 'modul/rekrutmen/nonaktif_rekrutmen.php';
-                        //     } elseif ($act == 'pelamar') {
-                        //         include 'modul/rekrutmen/pelamar_rekrutmen.php';
-                        //     } elseif ($act == 'del') {
-                        //         include 'modul/rekrutmen/del_rekrutmen.php';
-                        //     }
-                        // } 
-                        // elseif ($page == 'pinjaman') {
-                        //     if ($act == '') {
-                        //         include 'modul/pinjaman/data_pinjaman.php';
-                        //     } elseif ($act == 'add') {
-                        //         include 'modul/pinjaman/add_pinjaman.php';
-                        //     } elseif ($act == 'detail') {
-                        //         include 'modul/pinjaman/detail_pinjaman.php';
-                        //     }
-                        // } 
                         elseif ($page == 'profil') {
                             if ($act == '') {
                                 include 'modul/profil/data_profil.php';
@@ -305,19 +282,6 @@ if (@$_SESSION['Admin']) {
                                 include 'modul/tunjangan/del_tunjangan.php';
                             }
                         } 
-                        // elseif ($page == 'tunjangankaryawan') {
-                        //     if ($act == '') {
-                        //         include 'modul/tunjangan karyawan/data_tunjangankaryawan.php';
-                        //     } elseif ($act == 'add') {
-                        //         include 'modul/tu njangan karyawan/add_tunjangankaryawan.php';
-                        //     } elseif ($act == 'detail') {
-                        //         include 'modul/tunjangan karyawan/detail_tunjangankaryawan.php';
-                        //     } elseif ($act == 'edit') {
-                        //         include 'modul/tunjangan karyawan/edit_tunjangankaryawan.php';
-                        //     } elseif ($act == 'del') {
-                        //         include 'modul/tunjangan karyawan/del_tunjangankaryawan.php';
-                        //     }
-                        // } 
                         elseif ($page == 'laporan') {
                             if ($act == '') {
                                 include 'modul/laporan/laporan_absensi.php';

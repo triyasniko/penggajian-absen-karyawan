@@ -75,10 +75,6 @@ while ($d = mysqli_fetch_array($data)) {
                                                     <label>Gaji Pokok</label>
                                                     <input type="number" class="form-control" name="gapok" value="<?= $d['gapok']; ?>">
                                                 </div>
-                                                <div class="form-group">
-                                                    <label>Potongan</label>
-                                                    <input type="number" class="form-control" name="potongan" value="<?= $d['potongan']; ?>">
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -98,14 +94,15 @@ while ($d = mysqli_fetch_array($data)) {
 <?php
 if (isset($_POST['updateGaji'])) {
     $id         = $_POST['id_gaji'];
-    $potongan   = $_POST['potongan'];
     $gapok      = $_POST['gapok'];
     $tunjangan  = $_POST['tunjangan'];
-    $bonus      = $_POST['bonus'];
+    $jumlah_upah_lembur=$d['jumlah_upah_lembur'];
+    $total_gaji = $gapok+$tunjangan+$jumlah_upah_lembur;
+    
 
     //query INSERT disini
     $save = mysqli_query($koneksi, "UPDATE tb_gaji SET 
-    potongan='$_POST[potongan]',gapok='$_POST[gapok]',tunjangan='$_POST[tunjangan]',bonus='$_POST[bonus]' WHERE id_gaji='$_POST[id_gaji]'");
+    gapok='$_POST[gapok]',tunjangan='$_POST[tunjangan]',total_gaji='$total_gaji' WHERE id_gaji='$_POST[id_gaji]'");
 
     if ($save) {
         echo " <script>

@@ -200,8 +200,8 @@ if (isset($_POST['saveGaji'])) {
     $total_gaji=$gapok+$tunjangan+$jumlah_upah_lembur;
 
     //query INSERT disini
-    $save = mysqli_query($koneksi, "INSERT INTO tb_gaji (tgl_gaji,id_karyawan,gapok,tunjangan,bonus,total_jam_lembur,jumlah_upah_lembur,total_gaji)  
-    VALUES('$tgl_gaji','$id','$gapok','$tunjangan','$bonus','$total_jam_lembur','$jumlah_upah_lembur','$total_gaji')") or die(mysqli_error($koneksi));
+    $save = mysqli_query($koneksi, "INSERT INTO tb_gaji (tgl_gaji,id_karyawan,gapok,tunjangan,total_jam_lembur,jumlah_upah_lembur,total_gaji)  
+    VALUES('$tgl_gaji','$id','$gapok','$tunjangan','$total_jam_lembur','$jumlah_upah_lembur','$total_gaji')") or die(mysqli_error($koneksi));
 
     if ($save) {
         echo " <script>

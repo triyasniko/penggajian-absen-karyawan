@@ -4,6 +4,12 @@
         <div class="card-body">
             <a href="?page=gaji&act=add" class="btn btn-primary mb-3"><i class="fa fa-plus"></i> Tambah
                 Gaji</a></button>
+            <!-- <form action="?page=gaji&act=add2" method="post">
+                <button name="btnAddGaji" type="submit" class="btn btn-primary mb-3">
+                    <i class="fa fa-plus"></i> Tambah
+                    Gaji</a>
+                </button>
+            </form> -->
             <div class="table-responsive">
                 <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                     <thead>

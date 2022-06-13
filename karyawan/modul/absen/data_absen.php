@@ -51,7 +51,7 @@ if (isset($_POST['saveMasuk'])) {
     $jam1            = date("Y-m-d H:i:s");
     $jam2            = date("Y-m-d H:i:s");
 
-    $ket            = $_POST['keterangan'];
+    // $ket            = $_POST['keterangan'];
     $status         = 'hadir';
     // $valid         = 'N';
     // $sumber         = @$_FILES['foto']['tmp_name'];
@@ -69,8 +69,8 @@ if (isset($_POST['saveMasuk'])) {
     } else {
         $save = mysqli_query($koneksi, "
                 INSERT INTO 
-                tb_absenkaryawan(id_absensikaryawan, id_karyawan,tgl_absensi,jam_masuk,jam_keluar,keterangan,status_absensi,foto)
-                VALUES(NULL,'$id','$date', '$jam1','$jam2','$ket','$status','-')") or die(mysqli_error($koneksi));
+                tb_absenkaryawan(id_absensikaryawan, id_karyawan,tgl_absensi,jam_masuk,jam_keluar,status_absensi,foto)
+                VALUES(NULL,'$id','$date', '$jam1','$jam2','$status','-')") or die(mysqli_error($koneksi));
 
         if ($save) {
             echo " <script>

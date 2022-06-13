@@ -44,7 +44,7 @@ while ($d = mysqli_fetch_array($data)) {
                                         <th scope="row">Status</th>
                                         <td>
                                             <?php
-                                            if ($d['status_karyawan'] == "tetap") {
+                                            if ($d['status_karyawan'] == "Tetap") {
                                                 echo "Karyawan Tetap";
                                             } else {
                                                 echo "Karyawan Kontrak";

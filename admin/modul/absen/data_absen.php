@@ -50,7 +50,7 @@
                             <th>Nama Karyawan</th>
                             <th>Jam Absen</th>
                             <th>Jam Lembur</th>
-                            <th>Keterangan</th>
+                            <th>Status Kehadiran</th>
                             <th>Daftar Kegiatan</th>
                             <!-- <th>Status Validasi</th> -->
                         </tr>
@@ -83,8 +83,8 @@
                             </td>
                             <td>
                                 <?php
-                            if ($d['status_absensi'] == 'hadir') {
-                            ?>
+                                    if ($d['status_absensi'] == 'hadir') {
+                                ?>
                                 <span class="badge badge-pill badge-success">
                                     Hadir
                                 </span>
@@ -109,22 +109,6 @@
                             ?>
                                 <span class="badge badge-pill badge-danger">
                                     Tidak Hadir
-                                </span>
-                                <?php
-                            }
-                            ?>
-
-                                <?php
-                            if ($d['valid_absensi'] == 'Y') {
-                            ?>
-                                <span class="badge badge-pill badge-primary">
-                                    Divalidasi
-                                </span>
-                                <?php
-                            } else {
-                            ?>
-                                <span class="badge badge-pill badge-danger">
-                                    Belum Divalidasi
                                 </span>
                                 <?php
                             }
