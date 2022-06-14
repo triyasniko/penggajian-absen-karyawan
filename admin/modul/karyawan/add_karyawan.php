@@ -70,12 +70,32 @@ $level = "karyawan";
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Status Karyawan</label>
+                        <label>Status Karyawan :</label>
                         <select name="status_karyawan" class="form-control" required>
                             <option value="">-- Pilih Status Karyawan --</option>
                             <option value="tetap"> Tetap </option>
                             <option value="harian">Harian </option>
                         </select>
+                    </div>
+                    <div class="form-group" >
+                        <label>Status :</label>
+                        <select name="status_menikah" class="form-control" required>
+                            <option value="">-- Pilih Status --</option>
+                            <option value="1"> Singgle </option>
+                            <option value="2"> Menikah </option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="contain_status_nikah">
+                        <label>Memiliki anak? :</label>
+                        <select name="status_memiliki_anak" class="form-control" required>
+                            <option value="">-- Pilih Status --</option>
+                            <option value="1"> Menikah Belum ada anak </option>
+                            <option value="2"> Sudah memiliki anak </option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="contain_jumlah_anak"  style="display:none;">
+                        <label>Jumlah anak :</label>
+                        <input type="text" class="form-control" name="jumlah_anak" required="required" value="">
                     </div>
                     <div class="form-group">
                         <label>Golongan Darah :</label>
@@ -104,7 +124,31 @@ $level = "karyawan";
         </div>
     </div>
 </div>
+<script src="../assets/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#contain_status_nikah').hide();
+        $('select[name="status_menikah"]').change(function(){
+            let valStatus = $(this).val();
+            if(valStatus == 2){
+                $('#contain_status_nikah').show();
+                $('select[name="status_memiliki_anak"]').change(function(){
+                    let valStatusAnak=$(this).val();
+                    if(valStatusAnak == 2){
+                        $('#contain_jumlah_anak').show();
+                    }else{
+                        $('#contain_jumlah_anak').hide();
+                    }
+                });
+            }else{
+                $('#contain_status_nikah').hide();
+                $('#contain_jumlah_anak').hide();
+            }
+        });
 
+
+    });
+</script>
 
 
 <?php
