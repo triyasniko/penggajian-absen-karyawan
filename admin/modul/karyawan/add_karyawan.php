@@ -1,6 +1,4 @@
 <?php
-// https://www.malasngoding.com
-// menghubungkan dengan koneksi database
 include "../config/koneksi.php";
 
 // mengambil data barang dengan kode paling besar
@@ -8,17 +6,11 @@ $query = mysqli_query($koneksi, "SELECT max(kode_karyawan) as kodeTerbesar FROM 
 $data = mysqli_fetch_array($query);
 $kodeKaryawan = $data['kodeTerbesar'];
 
-// mengambil angka dari kode barang terbesar, menggunakan fungsi substr
-// dan diubah ke integer dengan (int)
 $urutan = (int) substr($kodeKaryawan, 3, 3);
 
 // bilangan yang diambil ini ditambah 1 untuk menentukan nomor urut berikutnya
 $urutan++;
 
-// membentuk kode barang baru
-// perintah sprintf("%03s", $urutan); berguna untuk membuat string menjadi 3 karakter
-// misalnya perintah sprintf("%03s", 15); maka akan menghasilkan '015'
-// angka yang diambil tadi digabungkan dengan kode huruf yang kita inginkan, misalnya BRG 
 $huruf = "FLC";
 $kodeKaryawan = $huruf . sprintf("%03s", $urutan);
 ?>
@@ -77,6 +69,26 @@ $level = "karyawan";
                             <option value="harian">Harian </option>
                         </select>
                     </div>
+                    <div class="form-group" >
+                        <label>Status Perkawinan :</label>
+                        <select name="status_menikah" class="form-control">
+                            <option value="">-- Pilih Status --</option>
+                            <option value="1"> Single </option>
+                            <option value="2"> Menikah </option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="contain_status_nikah">
+                        <label>Memiliki Anak :</label>
+                        <select name="status_memiliki_anak" class="form-control">
+                            <option value="">-- Pilih Status --</option>
+                            <option value="1"> Menikah belum ada anak </option>
+                            <option value="2"> Sudah memiliki anak </option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="contain_jumlah_anak"  style="display:none;">
+                        <label>Jumlah Anak :</label>
+                        <input type="text" class="form-control" name="jumlah_anak" value="">
+                    </div>
                     <div class="form-group">
                         <label>Golongan Darah :</label>
                         <select class="form-control" name="golongan_darah" required>
@@ -96,7 +108,6 @@ $level = "karyawan";
                         <input type="file" name="foto" required="required">
                         <p style="color: red">Ekstensi yang diperbolehkan .png | .jpg | .jpeg | .gif</p>
                     </div>
-                    
 
                     <button name="saveKaryawan" type="submit" class="btn btn-success mr-2">Submit</button>
                 </form>
@@ -109,7 +120,6 @@ $level = "karyawan";
 
 <?php
 
-// cek nis
 if (isset($_POST['saveKaryawan'])) {
     $id         = $_POST['id_karyawan'];
     $kode         = $_POST['kode_karyawan'];
@@ -118,6 +128,12 @@ if (isset($_POST['saveKaryawan'])) {
     $username    = $_POST['kode_karyawan'];
     $pass        = $_POST['kode_karyawan'];
     $status         = $_POST['status_karyawan'];
+    $status_menikah = $_POST['status_menikah'];
+    $status_anak    = $_POST['status_memiliki_anak'];
+    $jumlah_anak    = $_POST['jumlah_anak'];
+
+    // echo $status_menikah."-".$status_anak."-".$jumlah_anak;
+    // exit();
     $golongan_darah=$_POST['golongan_darah'];
     $jabatan        = $_POST['id_jabatan'];
     $alamat     = $_POST['alamat'];
@@ -128,12 +144,24 @@ if (isset($_POST['saveKaryawan'])) {
     $pindah       = move_uploaded_file($sumber, $target . $nama_gambar);
     $date         = date('Y-m-d');
     
+    //check value status_menikah, if 1 then status_menikah=menikah else status_menikah=single
+    if ($status_menikah == 1) {
+        $status_menikah = "Single";
+    } elseif($status_menikah == 2){
+        $status_menikah = "Menikah";
+    }
 
+    if ($status_anak == 1) {
+        $status_anak = "Belum ada anak";
+    } elseif($status_anak == 2){
+        $status_anak = "Sudah memiliki anak";
+    }
 
     //query INSERT disini
     $nama = addslashes($_POST['nama_karyawan']);
-    $save = mysqli_query($koneksi, "INSERT INTO tb_karyawan VALUES(NULL,'$kode','$nama','$nik', 
-	          	'$jabatan','$pendidikan','$username','$pass','$status','$golongan_darah','$alamat','$nama_gambar')");
+    $save = mysqli_query($koneksi, "INSERT INTO tb_karyawan 
+            (id_karyawan,kode_karyawan,nama_karyawan,nik,id_jabatan,pendidikan,username,password,status_karyawan,status_menikah,status_anak,jumlah_anak,golongan_darah,alamat,foto)
+            VALUES(NULL,'$kode','$nama','$nik', '$jabatan','$pendidikan','$username','$pass','$status','$status_menikah','$status_anak','$jumlah_anak','$golongan_darah','$alamat','$nama_gambar')") or die (mysqli_error($koneksi));
 
     if ($save) {
         echo " <script>
@@ -144,3 +172,29 @@ if (isset($_POST['saveKaryawan'])) {
 }
 
 ?>
+
+<script src="../assets/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#contain_status_nikah').hide();
+        $('select[name="status_menikah"]').change(function(){
+            let valStatus = $(this).val();
+            if(valStatus == 2){
+                $('#contain_status_nikah').show();
+                $('select[name="status_memiliki_anak"]').change(function(){
+                    let valStatusAnak=$(this).val();
+                    if(valStatusAnak == 2){
+                        $('#contain_jumlah_anak').show();
+                    }else{
+                        $('#contain_jumlah_anak').hide();
+                    }
+                });
+            }else{
+                $('#contain_status_nikah').hide();
+                $('#contain_jumlah_anak').hide();
+            }
+        });
+
+
+    });
+</script>

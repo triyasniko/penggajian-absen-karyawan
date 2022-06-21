@@ -50,7 +50,7 @@ $dt2 = $_POST["tgl_2"];
                 <!-- <th>Bonus</th> -->
                 <th>Total Jam Lembur</th>
                 <th>Total Upah Lembur</th>
-                <!-- <th>Potongan</th> -->
+                <th>Potongan</th>
                 <th>Total Gaji</th>
             </tr>
         </thead>
@@ -74,7 +74,7 @@ $dt2 = $_POST["tgl_2"];
                     <td><?= $data['total_jam_lembur']; ?></td>
                     <td><?= rupiah($data['jumlah_upah_lembur']); ?></td>
                     <!-- <td><?//= rupiah($data['bonus']) ?> </td> -->
-                    <!-- <td><?= rupiah($data['potongan']) ?> </td> -->
+                    <td><?= rupiah($data['potongan_tidakhadir']); ?> </td>
                     <td>
                         <?php echo rupiah($data['total_gaji']); ?>
                     </td>

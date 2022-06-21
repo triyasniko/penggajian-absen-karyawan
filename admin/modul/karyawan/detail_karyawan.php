@@ -41,6 +41,14 @@ while ($d = mysqli_fetch_array($data)) {
                                         <td><?= $d['pendidikan'] ?></td>
                                     </tr>
                                     <tr>
+                                        <th scope="row">Status Perkawinan</th>
+                                        <td><?= $d['status_menikah'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Jumlah Anak</th>
+                                        <td><?= $d['jumlah_anak'] ?></td>
+                                    </tr>
+                                    <tr>
                                         <th scope="row">Status</th>
                                         <td>
                                             <?php
@@ -51,6 +59,10 @@ while ($d = mysqli_fetch_array($data)) {
                                             }
                                             ?>
                                         </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Golongan Darah</th>
+                                        <td><?= $d['golongan_darah']; ?></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Alamat</th>

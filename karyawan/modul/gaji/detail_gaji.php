@@ -42,6 +42,14 @@ $id_gaji = $_GET['id_gaji'];
                                         <td><?= rupiah($d['jumlah_upah_lembur']); ?></td>
                                     </tr>
                                     <tr>
+                                        <th>Tidak Hadir</th>
+                                        <td><?= $d['tidakhadir']; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Potongan</th>
+                                        <td><?= rupiah($d['potongan_tidakhadir']); ?></td>
+                                    </tr>
+                                    <tr>
                                         <th>Total Gaji</th>
                                         <td><?= rupiah($d['total_gaji']); ?></td>
                                     </tr>
