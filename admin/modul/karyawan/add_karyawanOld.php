@@ -94,6 +94,8 @@ $level = "karyawan";
                         </select>
                     </div>
                     <div class="form-group" id="contain_jumlah_anak"  style="display:none;">
+                        <label>Jumlah anak :</label>
+                        <input type="text" class="form-control" name="jumlah_anak" required="required" value="">
                     </div>
                     <div class="form-group">
                         <label>Golongan Darah :</label>
@@ -132,10 +134,8 @@ $level = "karyawan";
                 $('#contain_status_nikah').show();
                 $('select[name="status_memiliki_anak"]').change(function(){
                     let valStatusAnak=$(this).val();
-                    let html = '';
                     if(valStatusAnak == 2){
-                        html .= '<label>Jumlah anak :</label><input type="text" class="form-control" name="jumlah_anak" required="required" value="">'';
-                        $('#contain_jumlah_anak').html(html);
+                        $('#contain_jumlah_anak').show();
                     }else{
                         $('#contain_jumlah_anak').hide();
                     }
