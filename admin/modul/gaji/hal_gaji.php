@@ -78,11 +78,12 @@
         $row_tunjangan = mysqli_fetch_array($tunjangan);
         // var_dump($tunjangan);
         // exit();
-        $total = $row_tunjangan['tunjangan'];
+        $total_tunjangan = $row_tunjangan['tunjangan'];
         ?>
 
         <div class="container mt-5">
             <div class="card">
+                <?php var_dump($row_tunjangan); ?>
                 <div class="card-body">
                     <div class="col" role="main">
                         <div class="row">
@@ -165,7 +166,37 @@
                                                 <div class="form-group">
                                                     <label>Jumlah Upah Lembur</label>
                                                     <!-- <div class="alert alert-info"><?php //var_dump($row_lembur); ?></div> -->
-                                                    <input type="number" class="form-control" name="jumlah_upah_lembur" value="<?php echo $total_jam_lembur*17000; ?>">
+                                                    <input type="number" class="form-control" name="jumlah_upah_lembur" value="<?php echo $total_jam_lembur*17000; ?>" readonly>
+                                                </div>
+
+                                                <?php
+                                                    // echo $r['id_karyawan'];
+                                                    // echo "<br>";
+                                                    $query_hadir = mysqli_query($koneksi, "SELECT * FROM tb_absenkaryawan WHERE id_karyawan='$r[id_karyawan]' AND MONTH(tgl_absensi)='$bulan' AND status_absensi IN ('hadir', 'sakit', 'izin') ");
+                                                    $total_hadir = mysqli_num_rows($query_hadir);
+                                                    // total hadir kasih kondisi apabila izin atau sakit lebih dari 
+                                                    $tidakhadir = 22 - $total_hadir;
+                                                    // echo $tidakhadir;
+                                                    $potongan = $tidakhadir * 50000; 
+                                                    $max_potongan = 0.5 * $b['gapok'];
+                                                    if($potongan>$max_potongan){
+                                                        $potongan=$max_potongan;
+                                                    }
+                                                    // echo rupiah($potongan);
+                                                ?>
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="form-group">
+                                                            <label>Tidak Hadir</label>
+                                                            <input name="tidakhadir" type="number" class="form-control" value="<?= $tidakhadir; ?>" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <div class="form-group">
+                                                            <label>Potongan</label>
+                                                            <input type="number" class="form-control" name="potongan_tidakhadir" value="<?php echo $potongan; ?>" readonly>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -191,17 +222,21 @@
 if (isset($_POST['saveGaji'])) {
     $tgl_gaji = $tgl;
     $id = $_POST['id_karyawan'];
-    // $potongan = $_POST['potongan'];
+    $tidakhadir=$_POST['tidakhadir'];
+    $potongan_tidakhadir = $_POST['potongan_tidakhadir'];
     $gapok = $_POST['gapok'];
     $tunjangan = $_POST['tunjangan'];
     $total_jam_lembur=$_POST['total_jam_lembur'];
-    // $bonus = $_POST['bonus'];
     $jumlah_upah_lembur=$_POST['jumlah_upah_lembur'];
-    $total_gaji=$gapok+$tunjangan+$jumlah_upah_lembur;
+    $total_gaji=($gapok+$tunjangan+$jumlah_upah_lembur)-($potongan_tidakhadir);
+    // echo $potongan_tidakhadir;
+    // var_dump($total_gaji);
+    // exit();
 
     //query INSERT disini
-    $save = mysqli_query($koneksi, "INSERT INTO tb_gaji (tgl_gaji,id_karyawan,gapok,tunjangan,total_jam_lembur,jumlah_upah_lembur,total_gaji)  
-    VALUES('$tgl_gaji','$id','$gapok','$tunjangan','$total_jam_lembur','$jumlah_upah_lembur','$total_gaji')") or die(mysqli_error($koneksi));
+    $save = mysqli_query($koneksi, "INSERT INTO tb_gaji (tgl_gaji,id_karyawan,gapok,tunjangan,total_jam_lembur,jumlah_upah_lembur,tidakhadir, potongan_tidakhadir,total_gaji)  
+    VALUES('$tgl_gaji','$id','$gapok','$tunjangan','$total_jam_lembur','$jumlah_upah_lembur','$tidakhadir','$potongan_tidakhadir','$total_gaji')") or die(mysqli_error($koneksi));
+    
 
     if ($save) {
         echo " <script>

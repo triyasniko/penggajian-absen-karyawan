@@ -75,6 +75,10 @@ while ($d = mysqli_fetch_array($data)) {
                                                     <label>Gaji Pokok</label>
                                                     <input type="number" class="form-control" name="gapok" value="<?= $d['gapok']; ?>">
                                                 </div>
+                                                <div class="form-group">
+                                                    <label>Potongan Tidak Hadir</label>
+                                                    <input type="number" class="form-control" name="gapok" value="<?= $d['potongan_tidakhadir']; ?>">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

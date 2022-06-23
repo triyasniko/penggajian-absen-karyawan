@@ -59,6 +59,26 @@ while ($d = mysqli_fetch_array($data)) {
                                 <option value="Harian" <?php if($d['status_karyawan']=="Harian"){ echo "selected";} ?> >Harian</option>
                             </select>
                         </div>
+                        <div class="form-group" >
+                            <label>Status Perkawinan :</label>
+                            <select name="status_menikah" class="form-control">
+                                <option value="">-- Pilih Status --</option>
+                                <option <?php if($d['status_menikah']=="Single"){ echo "selected";} ?> value="1"> Single </option>
+                                <option <?php if($d['status_menikah']=="Menikah"){ echo "selected";} ?> value="2"> Menikah </option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="contain_status_nikah">
+                            <label>Memiliki Anak :</label>
+                            <select name="status_memiliki_anak" class="form-control">
+                                <option value="">-- Pilih Status --</option>
+                                <option <?php if($d['status_memiliki_anak']=="Belum ada anak"){ echo "selected";} ?> value="1"> Menikah belum ada anak </option>
+                                <option <?php if($d['status_memiliki_anak']=="Sudah memiliki anak"){ echo "selected";} ?> value="2"> Sudah memiliki anak </option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="contain_jumlah_anak"  style="display:none;">
+                            <label>Jumlah Anak :</label>
+                            <input type="text" class="form-control" name="jumlah_anak" value="<?php echo $d['jumlah_anak'] ?>">
+                        </div>
                         <div class="form-group">
                             <label>Alamat :</label>
                             <textarea name="alamat" required="required" class="form-control" placeholder="Masukkan Alamat Lengkap">
@@ -71,7 +91,7 @@ while ($d = mysqli_fetch_array($data)) {
                         </div>
 
                         <button name="updateKaryawan" type="submit" class="btn btn-success mr-2">Simpan</button>
-                        <button class="btn btn-outline-success mr-2" a href="index.php">Kembali</button></a>
+                        <button class="btn btn-light mr-2" a href="index.php">Kembali</button></a>
                     </form>
                 </div>
             </div>
@@ -88,7 +108,12 @@ while ($d = mysqli_fetch_array($data)) {
 	    	WHERE id_karyawan='$_POST[id_karyawan]' ");
         }
         $updatekaryawan = mysqli_query($koneksi, "UPDATE tb_karyawan SET 
-			nama_karyawan='$_POST[nama_karyawan]',nik='$_POST[nik]', id_jabatan='$_POST[nama_jabatan]',pendidikan='$_POST[pendidikan]',status_karyawan='$_POST[status_karyawan]', alamat='$_POST[alamat]'
+			nama_karyawan='$_POST[nama_karyawan]',nik='$_POST[nik]', 
+            id_jabatan='$_POST[nama_jabatan]',pendidikan='$_POST[pendidikan]',
+            status_karyawan='$_POST[status_karyawan]', 
+            status_menikah='$_POST[status_menikah]', 
+            status_anak='$_POST[status_anak]',jumlah_anak='$_POST[jumlah_anak]',
+            alamat='$_POST[alamat]'
 			WHERE id_karyawan='$_POST[id_karyawan]' ");
 
         if ($updatekaryawan) {
@@ -105,6 +130,28 @@ while ($d = mysqli_fetch_array($data)) {
 }
 ?>
 
-</body>
+<script src="../assets/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#contain_status_nikah').hide();
+        $('select[name="status_menikah"]').change(function(){
+            let valStatus = $(this).val();
+            if(valStatus == 2){
+                $('#contain_status_nikah').show();
+                $('select[name="status_memiliki_anak"]').change(function(){
+                    let valStatusAnak=$(this).val();
+                    if(valStatusAnak == 2){
+                        $('#contain_jumlah_anak').show();
+                    }else{
+                        $('#contain_jumlah_anak').hide();
+                    }
+                });
+            }else{
+                $('#contain_status_nikah').hide();
+                $('#contain_jumlah_anak').hide();
+            }
+        });
 
-</html>
+
+    });
+</script>
