@@ -70,41 +70,17 @@ $level = "karyawan";
                         </select>
                     </div>
                     <div class="form-group" >
-<<<<<<< HEAD
-                        <label>Status :</label>
-                        <select name="status_menikah" class="form-control" required>
-                            <option value="">-- Pilih Status --</option>
-                            <option value="1"> Singgle </option>
-=======
                         <label>Status Perkawinan :</label>
                         <select name="status_menikah" class="form-control">
                             <option value="">-- Pilih Status --</option>
                             <option value="1"> Single </option>
->>>>>>> 03916654a0d6a6a2f75c6e3ce43569f72c72d48b
                             <option value="2"> Menikah </option>
                         </select>
                     </div>
                     <div class="form-group" id="contain_status_nikah">
-<<<<<<< HEAD
-                        <label>Memiliki anak? :</label>
-                        <select name="status_memiliki_anak" class="form-control" required>
-                            <option value="">-- Pilih Status --</option>
-                            <option value="1"> Menikah Belum ada anak </option>
-=======
-                        <label>Memiliki Anak :</label>
-                        <select name="status_memiliki_anak" class="form-control">
-                            <option value="">-- Pilih Status --</option>
-                            <option value="1"> Menikah belum ada anak </option>
->>>>>>> 03916654a0d6a6a2f75c6e3ce43569f72c72d48b
-                            <option value="2"> Sudah memiliki anak </option>
-                        </select>
+                       
                     </div>
-                    <div class="form-group" id="contain_jumlah_anak"  style="display:none;">
-<<<<<<< HEAD
-=======
-                        <label>Jumlah Anak :</label>
-                        <input type="text" class="form-control" name="jumlah_anak" value="">
->>>>>>> 03916654a0d6a6a2f75c6e3ce43569f72c72d48b
+                    <div class="form-group" id="contain_jumlah_anak" >
                     </div>
                     <div class="form-group">
                         <label>Golongan Darah :</label>
@@ -132,35 +108,6 @@ $level = "karyawan";
         </div>
     </div>
 </div>
-<script src="../assets/vendor/jquery/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#contain_status_nikah').hide();
-        $('select[name="status_menikah"]').change(function(){
-            let valStatus = $(this).val();
-            if(valStatus == 2){
-                $('#contain_status_nikah').show();
-                $('select[name="status_memiliki_anak"]').change(function(){
-                    let valStatusAnak=$(this).val();
-                    let html = '';
-                    if(valStatusAnak == 2){
-                        html .= '<label>Jumlah anak :</label><input type="text" class="form-control" name="jumlah_anak" required="required" value="">'';
-                        $('#contain_jumlah_anak').html(html);
-                    }else{
-                        $('#contain_jumlah_anak').hide();
-                    }
-                });
-            }else{
-                $('#contain_status_nikah').hide();
-                $('#contain_jumlah_anak').hide();
-            }
-        });
-
-
-    });
-</script>
-
-
 <?php
 
 if (isset($_POST['saveKaryawan'])) {
@@ -215,32 +162,36 @@ if (isset($_POST['saveKaryawan'])) {
 }
 
 ?>
-<<<<<<< HEAD
-=======
 
 <script src="../assets/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#contain_status_nikah').hide();
         $('select[name="status_menikah"]').change(function(){
             let valStatus = $(this).val();
+            // alert(valStatus);
             if(valStatus == 2){
-                $('#contain_status_nikah').show();
+                let comboStatusNikah = '<label>Memiliki Anak :</label>';
+                comboStatusNikah += '<select name="status_memiliki_anak" class="form-control" required>';
+                comboStatusNikah += '<option value="">-- Pilih Status --</option><option value="1"> Menikah belum ada anak </option><option value="2"> Sudah memiliki anak </option>';
+                comboStatusNikah += '</select>'
+
+                $('#contain_status_nikah').html(comboStatusNikah);
                 $('select[name="status_memiliki_anak"]').change(function(){
                     let valStatusAnak=$(this).val();
                     if(valStatusAnak == 2){
-                        $('#contain_jumlah_anak').show();
+                        let formJumlahAnak = '<label>Jumlah anak :</label><input type="text" class="form-control" name="jumlah_anak" required="required" value="">';
+                     
+                        $('#contain_jumlah_anak').html(formJumlahAnak);
                     }else{
-                        $('#contain_jumlah_anak').hide();
+                        $('#contain_jumlah_anak').html('');
                     }
                 });
             }else{
-                $('#contain_status_nikah').hide();
-                $('#contain_jumlah_anak').hide();
+                $('#contain_status_nikah').html('');
+                $('#contain_jumlah_anak').html('');
             }
         });
 
 
     });
 </script>
->>>>>>> 03916654a0d6a6a2f75c6e3ce43569f72c72d48b
