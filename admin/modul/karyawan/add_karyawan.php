@@ -171,7 +171,7 @@ if (isset($_POST['saveKaryawan'])) {
             // alert(valStatus);
             if(valStatus == 2){
                 let comboStatusNikah = '<label>Memiliki Anak :</label>';
-                comboStatusNikah += '<select name="status_memiliki_anak" class="form-control" required>';
+                comboStatusNikah += '<select name="status_memiliki_anak" class="form-control" required  >';
                 comboStatusNikah += '<option value="">-- Pilih Status --</option><option value="1"> Menikah belum ada anak </option><option value="2"> Sudah memiliki anak </option>';
                 comboStatusNikah += '</select>'
 
