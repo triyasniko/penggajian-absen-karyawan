@@ -55,30 +55,29 @@ while ($d = mysqli_fetch_array($data)) {
                             <label>Status Karyawan :</label>
                             <select class="form-control" name="status_karyawan">
                                 <option>-- Pilih Status--</option>
-                                <option value="Tetap" <?php if($d['status_karyawan']=="Tetap"){ echo "selected";} ?> >Tetap</option>
-                                <option value="Harian" <?php if($d['status_karyawan']=="Harian"){ echo "selected";} ?> >Harian</option>
+                                <option value="Tetap" <?php if($d['status_karyawan']=="Tetap"){ echo "selected";} ?> value="Tetap">Tetap</option>
+                                <option value="Harian" <?php if($d['status_karyawan']=="Harian"){ echo "selected";} ?> value="Harian">Harian</option>
                             </select>
                         </div>
                         <div class="form-group" >
                             <label>Status Perkawinan :</label>
                             <select name="status_menikah" class="form-control">
                                 <option value="">-- Pilih Status --</option>
-                                <option <?php if($d['status_menikah']=="Single"){ echo "selected";} ?> value="1"> Single </option>
-                                <option <?php if($d['status_menikah']=="Menikah"){ echo "selected";} ?> value="2"> Menikah </option>
+                                <option <?php if($d['status_menikah']=="1"){ echo "selected";} ?> value="1"> Single </option>
+                                <option <?php if($d['status_menikah']=="2"){ echo "selected";} ?> value="2"> Menikah </option>
                             </select>
                         </div>
-
                         <div id="contain_edit">
-                            <?php if($d['status_menikah']=="Menikah"):?>
+                            <?php if($d['status_menikah']=="2"):?>
                                 <div class="form-group" id="contain_status_nikah">
                                     <label>Memiliki Anak :</label>
                                     <select name="status_anak" class="form-control">
                                         <option value="">-- Pilih Status --</option>
-                                        <option <?php if($d['status_anak']=="Belum ada anak"){ echo "selected";} ?> value="1"> Menikah belum ada anak </option>
-                                        <option <?php if($d['status_anak']=="Sudah memiliki anak"){ echo "selected";} ?> value="2"> Sudah memiliki anak </option>
+                                        <option <?php if($d['status_anak']=="1"){ echo "selected";} ?> value="1"> Menikah belum ada anak </option>
+                                        <option <?php if($d['status_anak']=="2"){ echo "selected";} ?> value="2"> Sudah memiliki anak </option>
                                     </select>
                                 </div>
-                                <?php if($d['status_anak']=="Sudah memiliki anak"):?>
+                                <?php if($d['status_anak']=="2"):?>
                                     <div class="form-group" id="contain_jumlah_anak">
                                         <label>Jumlah Anak :</label>
                                         <input type="text" class="form-control" name="jumlah_anak" value="<?php echo $d['jumlah_anak'] ?>">
@@ -86,6 +85,11 @@ while ($d = mysqli_fetch_array($data)) {
                                 <?php endif;?>
                             <?php endif; ?>
                         </div>
+                        <div class="form-group" id="contain_status_nikah">
+                        </div>
+                        <div class="form-group" id="contain_jumlah_anak">
+                        </div>
+                        
                         <div class="form-group">
                             <label>Alamat :</label>
                             <textarea name="alamat" required="required" class="form-control" placeholder="Masukkan Alamat Lengkap">
@@ -143,12 +147,13 @@ while ($d = mysqli_fetch_array($data)) {
         $('select[name="status_menikah"]').change(function(){
             let valStatus = $(this).val();
             // alert(valStatus);
+            // console.log(valStatus)
             if(valStatus == 2){
                 let comboStatusNikah = '<label>Memiliki Anak :</label>';
                 comboStatusNikah += '<select name="status_anak" class="form-control" required  >';
                 comboStatusNikah += '<option value="">-- Pilih Status --</option><option value="1"> Menikah belum ada anak </option><option value="2"> Sudah memiliki anak </option>';
                 comboStatusNikah += '</select>'
-
+                // console.log(comboStatusNikah)
                 $('#contain_status_nikah').html(comboStatusNikah);
                 $('select[name="status_anak"]').change(function(){
                     let valStatusAnak=$(this).val();
@@ -167,6 +172,7 @@ while ($d = mysqli_fetch_array($data)) {
         });
 
         $('select[name="status_anak"]').change(function(){
+                    console.log($(this).val())
                     let valStatusAnak=$(this).val();
                     if(valStatusAnak == 2){
                         let formJumlahAnak = '<label>Jumlah anak :</label><input type="text" class="form-control" name="jumlah_anak" required="required" value="">';

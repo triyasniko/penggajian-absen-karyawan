@@ -65,8 +65,8 @@ $level = "karyawan";
                         <label>Status Karyawan :</label>
                         <select name="status_karyawan" class="form-control" required>
                             <option value="">-- Pilih Status Karyawan --</option>
-                            <option value="tetap"> Tetap </option>
-                            <option value="harian">Harian </option>
+                            <option value="Tetap"> Tetap </option>
+                            <option value="Harian">Harian </option>
                         </select>
                     </div>
                     <div class="form-group" >
@@ -136,15 +136,19 @@ if (isset($_POST['saveKaryawan'])) {
     
     //check value status_menikah, if 1 then status_menikah=menikah else status_menikah=single
     if ($status_menikah == 1) {
-        $status_menikah = "Single";
+       // $status_menikah = "Single";
+       $status_menikah = "1";
     } elseif($status_menikah == 2){
-        $status_menikah = "Menikah";
+       // $status_menikah = "Menikah";
+        $status_menikah = "2";
     }
 
     if ($status_anak == 1) {
-        $status_anak = "Belum ada anak";
+        // $status_anak = "Belum ada anak";
+        $status_anak = "1";
     } elseif($status_anak == 2){
-        $status_anak = "Sudah memiliki anak";
+        // $status_anak = "Sudah memiliki anak";
+        $status_anak = "2";
     }
 
     //query INSERT disini
